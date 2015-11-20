@@ -18,11 +18,11 @@ mongoose.connect('mongodb://localhost/resu-me', (err)=>{
    if(err){
       console.log(err);
    } else {
-      console.log('connection successfull')
+      console.log('connection successfull');
    }
 });
 
-app.listen(3000, ()=>{ console.log("Museumr listening on Port 3000")});
+app.listen(3000, ()=>{ console.log("Resu-me listening on Port 3000")});
 
 app.get('/', (req, res)=>{
    res.render('index', req.body);
