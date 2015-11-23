@@ -409,7 +409,7 @@ var resumes = [
   }
 ];
 var mongoose = require('mongoose');
-var SuperResume = require('./models/super_resume.js');
+var ResumeData = require('./models/resume_data.js');
 
 mongoose.connect('mongodb://localhost/resu-me', function(err) {
   if (err) {
@@ -421,12 +421,12 @@ mongoose.connect('mongodb://localhost/resu-me', function(err) {
 
 
 
-SuperResume.collection.insert(resumes, onInsert);
+ResumeData.collection.insert(resumes, onInsert);
 function onInsert(err,docs) {
   if (err) {
     console.log('seed error, ruh roh...');
 
   }else {
-    console.info('%d superresumes were successfully stored.', docs.length);
+    console.info('%d resumedatas were successfully stored.', docs.length);
   }
 }
