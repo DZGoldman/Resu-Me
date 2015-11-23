@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var app = express();
-
+var fs = require('fs');
 // use an index.html
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -26,4 +26,11 @@ app.listen(3000, ()=>{ console.log("Resu-me listening on Port 3000")});
 
 app.get('/', (req, res)=>{
    res.render('index', req.body);
+});
+
+fs.readdirSync('./controllers').forEach(function (file) {
+  if(file.substr(-3) == '.js') {
+      route = require('./controllers/' + file);
+      route.controller(app);
+  }
 });

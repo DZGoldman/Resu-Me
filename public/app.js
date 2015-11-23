@@ -1,5 +1,5 @@
 //click events:
-
+console.log('hello dave');
 
 //sign up
 
@@ -8,9 +8,16 @@
 //search box
 
 // write new resume
-$('#create-new-resume').on('click', function () {
+$(function () {
+  $('#create-new-resume').on('click', function () {
+    $.get('/resumeform')
+
+
+  })
+
 
 })
+
   //submit a new resume
 
 
