@@ -11,12 +11,8 @@ console.log('hello dave');
 $(function () {
   $('#create-new-resume').on('click', function () {
     console.log('new resume');
-  //  $.get('/resumeform')
-
-
+  //  $.get('/resumeform') // render partial
   })
-
-
 })
 
   //submit a new resume
