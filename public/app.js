@@ -10,7 +10,8 @@ console.log('hello dave');
 // write new resume
 $(function () {
   $('#create-new-resume').on('click', function () {
-    $.get('/resumeform')
+    console.log('new resume');
+  //  $.get('/resumeform')
 
 
   })
