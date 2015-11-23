@@ -10,6 +10,7 @@ console.log('hello dave');
 // write new resume
 $(function () {
   $('#create-new-resume').on('click', function () {
+    console.log('making new resume');
 
    $.get('/resumeform') // render partial
   })

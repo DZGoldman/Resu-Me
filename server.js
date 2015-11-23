@@ -13,6 +13,7 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // log with morgan
 app.use(logger('dev'));
+app.set('view engine', 'ejs')
 // connect to Mongodb
 mongoose.connect('mongodb://localhost/resu-me', (err)=>{
    if(err){
@@ -27,8 +28,9 @@ app.listen(3000, ()=>{ console.log("Resu-me listening on Port 3000")});
 app.get('/', (req, res)=>{
    res.render('index', req.body);
 });
+
 app.get('/resumeform', function (req, res) {
-    res.render('./views/resume.ejs');
+    res.render('views/resume.ejs');
 
   });
 
