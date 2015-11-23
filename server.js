@@ -27,7 +27,12 @@ app.listen(3000, ()=>{ console.log("Resu-me listening on Port 3000")});
 app.get('/', (req, res)=>{
    res.render('index', req.body);
 });
-// 
+app.get('/resumeform', function (req, res) {
+    res.render('./views/resume.ejs');
+
+  });
+
+//
 // fs.readdirSync('./controllers').forEach(function (file) {
 //   if(file.substr(-3) == '.js') {
 //       route = require('./controllers/' + file);
