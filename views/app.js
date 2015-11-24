@@ -8,6 +8,7 @@ $(function () {
 
 //search box
 
+
 // write new resume
 
   $('#create-new-resume').on('click', function () {
