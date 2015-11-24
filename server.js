@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/resumeform', function(req, res) {
+  console.log('form');
    res.render('resumeForm', {
       title: "Save new Resume", //page title
       action: "/resume", //post action for the form
@@ -83,9 +84,10 @@ app.get('/resumeform', function(req, res) {
    });
 });
 
-app.post('/resume', (req,res)=>{
+app.post('/resumeform', (req,res)=>{
+  console.log('form submitted');
    res.send(req.body);
-}); 
+});
 
 //
 // fs.readdirSync('./controllers').forEach(function (file) {
