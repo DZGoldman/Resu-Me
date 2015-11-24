@@ -1,0 +1,25 @@
+<!-- {
+   name: String,
+   streetAddress: String,
+   email: String,
+   phone: String,
+   experiences: [{
+      title: String,
+      startDate: String,
+      endDate: String,
+      description: String
+   }],
+   summary: String,
+} -->
+
+<form action="<%= action %>" method="post">
+  <!-- if there are any fields -->
+<% if (fields.length) { %>
+    <% fields.forEach(function(field){ %>
+        <label><%= field.name %></label>
+        <input type="<%= field.type %>" name="<%= field.name %>" <% if (field.property) { %> <%= field.property %> <% } %> >
+    <% }) %>
+<% } %>
+
+<button type="submit"><%= title %></button> <!--Title for button is same as that of the page-->
+</form>
