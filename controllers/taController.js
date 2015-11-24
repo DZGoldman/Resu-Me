@@ -58,7 +58,9 @@ module.exports.controller = function(app) {
          var report = "Document [" + i + "] ";
          tfidf.listTerms(i).forEach(function(item, index) {
             //only list the first 10 words
-            if (index < 10){ report = report + "word #" + index + ": " + item.term + ', ';}
+            if (index < 10) {
+               report = report + "word #" + index + ": " + item.term + ', ';
+            }
          });
          // console.log(report);
          output.push(report);
@@ -68,23 +70,23 @@ module.exports.controller = function(app) {
 
 
 
-//return important of wrods to different documents
-// sample uri component "design%20development%20creativity%20analysis"
-app.get('/tfidf/:compare', (req, res)=>{
+   //return important of wrods to different documents
+   // sample uri component "design%20development%20creativity%20analysis"
+   app.get('/tfidf/:compare', (req, res) => {
       tfidf = new TfIdf();
-    var output = []
-   //  //NOTE : does this need to be decoded instead?
-   var compare = decodeURIComponent(req.params.compare);
+      var output = []
+         //  //NOTE : does this need to be decoded instead?
+      var compare = decodeURIComponent(req.params.compare);
 
-   //add job description documents to the tfidf
-   resumeArray.forEach(function(value, index, array) {
-      tfidf.addDocument(value.experiences[0].jobdescription);
+      //add job description documents to the tfidf
+      resumeArray.forEach(function(value, index, array) {
+         tfidf.addDocument(value.experiences[0].jobdescription);
+      });
+      // compare the passed in variables to this document.
+      tfidf.tfidfs(compare, function(i, measure) {
+         output.push("the strings', '" + compare + "' importance to document# " + i + "is " + measure);
+      })
+      res.send(output);
    });
-   // compare the passed in variables to this document.
-   tfidf.tfidfs(compare, function(i, measure){
-      output.push("the strings', '" + compare + "' importance to document# " + i + "is " + measure );
-   })
-   res.send(output);
-});
 
 }
