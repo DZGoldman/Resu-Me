@@ -1,0 +1,66 @@
+<!-- {
+   name: String,
+   streetAddress: String,
+   email: String,
+   phone: String,
+   experiences: [{
+      title: String,
+      startDate: String,
+      endDate: String,
+      description: String
+   }],
+   summary: String,
+} -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Document</title>
+</head>
+
+<body>
+   <main>
+      <!-- if there are any fields -->
+      <% if (fields.length) { %>
+         <% fields.forEach(function(field){ %>
+
+           <% if(field.name=='title'){ %>
+             <br>
+             <div>Experiences:</div>
+             <% } %>
+
+            <label>
+               <%= field.name %>
+            </label>
+            <input type="<%= field.type %>" name="<%= field.name %>" <% if (field.property) { %>
+            <%= field.property %>
+               <% } %>
+
+               <% if (field.rows) { %>
+               <%= field.rows %>
+               <% } %>
+
+               >
+
+               <br>
+               <br>
+                  <% }) %>
+                     <% } %>
+                        <button id='new-experience'>Add A New Experience</button>
+
+                        <br>
+                        <br>
+                        <button type="submit">
+                           <%= title %>
+                        </button>
+                        <!--Title for button is same as that of the page-->
+
+   </main>
+   </form>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+</body>
+
+</html>
+<form action="<%= action %>" method="post">
