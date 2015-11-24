@@ -2,6 +2,7 @@
 console.log('hello dave');
 $(function () {
 
+
 //sign up
 // login
 //search box
