@@ -11,15 +11,36 @@
    }],
    summary: String,
 } -->
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+   <meta charset="UTF-8">
+   <title>Document</title>
+</head>
+
+<body>
+   <main>
+      <!-- if there are any fields -->
+      <% if (fields.length) { %>
+         <% fields.forEach(function(field){ %>
+            <label>
+               <%= field.name %>
+            </label>
+            <input type="<%= field.type %>" name="<%= field.name %>" <% if (field.property) { %>
+            <%= field.property %>
+               <% } %> >
+                  <% }) %>
+                     <% } %>
+
+                        <button type="submit">
+                           <%= title %>
+                        </button>
+                        <!--Title for button is same as that of the page-->
+
+   </main>
+   </form>
+</body>
+
+</html>
 <form action="<%= action %>" method="post">
-  <!-- if there are any fields -->
-<% if (fields.length) { %>
-    <% fields.forEach(function(field){ %>
-        <label><%= field.name %></label>
-        <input type="<%= field.type %>" name="<%= field.name %>" <% if (field.property) { %> <%= field.property %> <% } %> >
-    <% }) %>
-<% } %>
-
-<button type="submit"><%= title %></button> <!--Title for button is same as that of the page-->
-</form>

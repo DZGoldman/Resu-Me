@@ -4,10 +4,12 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var app = express();
 var fs = require('fs');
+
 // use an index.html
 app.use(bodyParser.urlencoded({
    extended: false
 }));
+
 app.use(bodyParser.json());
 app.use(logger('dev'));
 //app.use(express.static('public'));
@@ -35,53 +37,55 @@ app.get('/', (req, res) => {
 
 app.get('/resumeform', function(req, res) {
    res.render('resumeForm', {
-      title: "Save a new ", //page title
-      action: "/resumeform", //post action for the form
+      title: "Save new Resume", //page title
+      action: "/resume", //post action for the form
       fields: [{
          name: "name",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }, {
          name: "streetAddress",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }, {
          name: "email",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }, {
          name: "phone",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }, {
          name: "summary",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }, {
          name: "experiences",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }, {
          name: "title",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }, {
          name: "startDate",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }, {
          name: "endDate",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }, {
          name: "description",
-         type: 'text'
-         property: required
+         type: 'text',
+         property: "required"
       }]
    });
 });
 
-
+app.post('/resume', (req,res)=>{
+   res.send(req.body);
+}); 
 
 //
 // fs.readdirSync('./controllers').forEach(function (file) {
