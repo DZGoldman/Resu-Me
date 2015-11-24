@@ -19,7 +19,8 @@ module.exports.controller = function(app) {
       });
       //train the classifier
       classifier.train();
-      res.send(classifier.getClassifications(classTest));
+      // res.send(classifier.getClassifications(classTest));
+      res.send(classifier.classify(classTest));
    });
 
    // route to view the resume array tes
@@ -66,27 +67,24 @@ module.exports.controller = function(app) {
    });
 
 
+
 //return important of wrods to different documents
+// sample uri component "design%20development%20creativity%20analysis"
 app.get('/tfidf/:compare', (req, res)=>{
+      tfidf = new TfIdf();
     var output = []
    //  //NOTE : does this need to be decoded instead?
-   // var compare = encodeURIComponent(req.params.compare);
+   var compare = decodeURIComponent(req.params.compare);
 
    //add job description documents to the tfidf
    resumeArray.forEach(function(value, index, array) {
       tfidf.addDocument(value.experiences[0].jobdescription);
    });
+   // compare the passed in variables to this document.
    tfidf.tfidfs(compare, function(i, measure){
       output.push("the strings', '" + compare + "' importance to document# " + i + "is " + measure );
    })
+   res.send(output);
 });
 
-   /* stem and tokenize
-   // natural.PorterStemmer.attach();
-   // natural.LancasterStemmer.attach();
-   //Stem and tokenize the text.
-   // var stemmed = value.experiences[0].jobdescription.tokenizeAndStem();
-   // add the document fo to the tfidf
-   // tfidf.addDocument(stemmed);
-   */
 }
