@@ -34,6 +34,7 @@ app.use(logger('dev'));
 //app.use(express.static('public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
+app.use(express.static(__dirname + '/public'))
 // log with morgan
 app.use(logger('dev'));
 app.set('view engine', 'ejs');
