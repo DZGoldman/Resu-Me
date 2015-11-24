@@ -1,7 +1,7 @@
 var express = require('express');
+var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var logger = require('morgan');
 var app = express();
 var fs = require('fs');
 //requirements for passport
@@ -9,10 +9,12 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var logger = require('morgan');
 var configDB = require('./config/database.js');
 
 
 // set up express app
+app.use(logger('dev'));
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 
@@ -23,7 +25,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // required for pass port routes
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 
 
@@ -47,7 +49,8 @@ mongoose.connect('mongodb://localhost/resu-me', (err)=>{
    }
 });
 
-// require('./config/passport')(passport); // pass passport for configuration
+//need this for passport
+require('./config/passport')(passport); // pass passport for configuration
 
 
 app.listen(3000, ()=>{ console.log("Resu-me listening on Port 3000")});
