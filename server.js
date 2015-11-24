@@ -35,6 +35,9 @@ app.get('/', (req, res) => {
    res.render('index', req.body);
 });
 
+
+var UserResume = require('./models/user_resume.js');
+
 app.get('/resumeform', function(req, res) {
   console.log('form');
    res.render('resumeForm', {
@@ -84,9 +87,26 @@ app.get('/resumeform', function(req, res) {
    });
 });
 
-app.post('/resumeform', (req,res)=>{
+app.post('/resume', (req,res)=>{
   console.log('form submitted');
    res.send(req.body);
+
+  //  UserResume.save({
+  //    name: req.param('name'),
+  //    streetAddress: req.param('streetAddress'),
+  //    email: req.param('email'),
+  //    phone: req.param('phone'),
+  //    experiences: [{
+  //       title: req.param('title'),
+  //       startDate: req.param('startDate'),
+  //       endDate: req.param('endDate'),
+  //       description: req.param('description')
+  //    }],
+  //    summary: req.param('summary'),
+
+   //})
+
+
 });
 
 //
