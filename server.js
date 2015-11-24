@@ -8,12 +8,12 @@ var fs = require('fs');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(logger('dev'));
-app.use(express.static('public'));
+//app.use(express.static('public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // log with morgan
 app.use(logger('dev'));
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 // connect to Mongodb
 mongoose.connect('mongodb://localhost/resu-me', (err)=>{
    if(err){
@@ -30,8 +30,7 @@ app.get('/', (req, res)=>{
 });
 
 app.get('/resumeform', function (req, res) {
-    res.render('views/resume.ejs');
-
+    res.render('resume');
   });
 
 //
