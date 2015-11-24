@@ -61,12 +61,10 @@ app.get('/resumeform', function(req, res) {
          property: "required"
       }, {
          name: "summary",
-         type: 'text',
-         property: "required"
-      }, {
-         name: "experiences",
-         type: 'text',
-         property: "required"
+         type: "textarea",
+         property: "required",
+         rows: "5",
+         cols: "50"
       }, {
          name: "title",
          type: 'text',
@@ -81,7 +79,7 @@ app.get('/resumeform', function(req, res) {
          property: "required"
       }, {
          name: "description",
-         type: 'text',
+         type: "textarea",
          property: "required"
       }]
    });
