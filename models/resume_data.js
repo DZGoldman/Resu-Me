@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 //
 var ResumeDataSchema = new mongoose.Schema({
-  education: Array,
+  title: String,
   experiences: Array,
-  summary: Array
+  summary: String
 })
 
 var ResumeData = mongoose.model('ResumeData', ResumeDataSchema)
