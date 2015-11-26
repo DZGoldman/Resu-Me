@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var app = express();
 var fs = require('fs');
+var ResumeData = require('./models/resume_data.js')
 // use an index.html
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -35,10 +36,17 @@ app.get('/resumeform', function (req, res) {
   });
 
 app.get('/data/:search', function (req, res) {
-  var search = req.params.search
-  search = search.toLowerCase
-  res.send(req.params.search);
-  console.log(req.params.search);
+  var search = req.params.search.toLowerCase();
+  ResumeData.find({title: search}).exec(function (err, resumes) {
+    if (err) {
+      console.log(err);
+    }else {
+      console.log('these are the search results:');
+      console.log(resumes);
+    }
+})
+
+
 
 })
 

@@ -1,14 +1,8 @@
 //click events:
-console.log('hello dave');
+
 $(function () {
 
-  $('#create-new-resume').on('click', function () {
-    console.log('making new resume');
-
-   $.get('/resumeform') // render ejs
-  })
-
-
+  $('#create-new-resume').click(newResume)
   $('.glyphicon-search').click(dataSearch)
 
 })
@@ -17,6 +11,14 @@ var dataSearch = function () {
   console.log('searching');
   var search = $('.search-query').val()
   $.get('/data/'+search)
+}
+
+
+var newResume=  function () {
+  //not yet mane
+  console.log('making new resume');
+ $.get('/resumeform') // render ejs
+
 }
 
   //sign up
