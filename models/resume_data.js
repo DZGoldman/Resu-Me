@@ -6,6 +6,6 @@ var ResumeDataSchema = new mongoose.Schema({
   summary: Array
 })
 
-var ResumeData = mongoose.model('ResumeData', ResumeDataSchema)
+var ResumeData = mongoose.model('ResumeData', ResumeDataSchema); 
 
-module.exports = ResumeData
+module.exports = ResumeData;

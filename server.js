@@ -5,6 +5,8 @@ var express = require('express'),
    fs = require('fs'),
    app = express(),
    request = require('request');
+ResumeData = require('./models/resume_data.js');
+
 // var User = require('./controllers/userController.js');
 // use an index.html
 app.use(bodyParser.urlencoded({
@@ -33,6 +35,13 @@ app.listen(3000, () => {
 
 app.get('/', (req, res) => {
    res.render('index', req.body);
+});
+
+app.get('/thisTest', (req, res) => {
+   ResumeData.find().exec((err, resumes) => {
+      // var test = resumes[3];
+      res.send(resumes);
+   });
 });
 
 //Controllers
