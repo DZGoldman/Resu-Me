@@ -34,6 +34,14 @@ app.get('/resumeform', function (req, res) {
     res.render('resume');
   });
 
+app.get('/data/:search', function (req, res) {
+  var search = req.params.search
+  search = search.toLowerCase
+  res.send(req.params.search);
+  console.log(req.params.search);
+
+})
+
 //
 // fs.readdirSync('./controllers').forEach(function (file) {
 //   if(file.substr(-3) == '.js') {
