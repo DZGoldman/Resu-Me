@@ -60,23 +60,7 @@ mongoose.connect('mongodb://localhost/resu-me', (err) => {
 //need this for passport
 require('./config/passport')(passport); // pass passport for configuration
 
-
 app.listen(3000, ()=>{ console.log("Resu-me listening on Port 3000")});
-
-// current user feature (testing)
-// app.use(function (req, res, next) {
-//   res.locals.req = req;
-//   res.locals.res = res;
-// });
-   //res.render('index', {req : req, res : res});
-
-var loggedIn = function (req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.redirect('/login');
-    }
-}
 
 
 app.get('/', (req, res) => {
@@ -84,11 +68,6 @@ app.get('/', (req, res) => {
    res.render('index', {req: req});
 
 });
-
-app.get('/sessiontest', loggedIn, (req, res)=>{
-
-res.send(req.user)
-})
 
 app.get('/test', function(req, res) {
    ResumeData.find({

@@ -1,12 +1,6 @@
 module.exports = function(app, passport) {
 
-
-    // HOME PAGE (with login links) ========
-
-    // app.get('/', function(req, res) {
-    //     res.render('index.ejs'); // load the index.ejs file
-    // });
-
+// note that the get routes all pass in the 'req' data. This is so the header has access to the current user.
 
     // LOGIN ===============================
     // show the login form
