@@ -2,7 +2,7 @@
 <html>
 <head>
     <% include ../partials/head %>
-  
+
     <style>
         body        { padding-top:80px; word-wrap:break-word; }
     </style>
@@ -23,6 +23,7 @@
                 <h3><span class="fa fa-user"></span> Local</h3>
 
                     <p>
+                        <strong>username</strong>: <%= user.username %><br>
                         <strong>id</strong>: <%= user._id %><br>
                         <strong>email</strong>: <%= user.local.email %><br>
                         <strong>password</strong>: <%= user.local.password %>
