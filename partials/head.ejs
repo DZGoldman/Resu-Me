@@ -26,6 +26,8 @@
              <li><a href="#">About</a></li>
            </ul>
            <ul class="nav navbar-nav navbar-right">
+
+             <%if(!req.user){  %>
              <li>
                <a href="/signup">
                  <span class="glyphicon glyphicon-user"></span> Sign Up</a>
@@ -34,6 +36,17 @@
                <a href="/login">
                  <span class="glyphicon glyphicon-log-in"></span> Login</a>
              </li>
+              <%}else{  %>
+                <li>
+                  <a href="/profile">
+                    <span class="glyphicon glyphicon-user"></span> Hello!</a>
+                </li>
+                <li>
+                  <a href="/logout">
+                    <span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                </li>
+                <%}  %>
+
            </ul>
          </div>
        </div>
