@@ -77,6 +77,10 @@ app.get('/test', function(req, res) {
    });
 });
 
+app.get('/resume', function (req, res) {
+   res.render('new_resume', {req:req})  
+})
+
 //
 // fs.readdirSync('./controllers').forEach(function (file) {
 //   if(file.substr(-3) == '.js') {
