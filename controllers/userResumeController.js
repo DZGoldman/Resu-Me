@@ -11,10 +11,10 @@
 //
 // }
 
-
+module.exports.controller = function(app){}; 
 
 //app.post resume/:resumeparams
-//make a new Resume with params from form, try to save 
+//make a new Resume with params from form, try to save
 
 
 

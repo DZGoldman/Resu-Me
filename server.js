@@ -1,28 +1,25 @@
-
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
-var app = express();
 var fs = require('fs');
 var ResumeData = require('./models/resume_data.js');
->>>>>>> dev
+var app = express();
 
-// var User = require('./controllers/userController.js');
+
 // use an index.html
 app.use(bodyParser.urlencoded({
    extended: false
 }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
-
-//app.use(express.static('public'));
+app.use(express.static('public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
->>>>>>> dev
+app.use(express.static(__dirname + '/public'));
 
-app.use(express.static(__dirname + '/public'))
-   // log with morgan
+// log with morgan
 app.use(logger('dev'));
+  app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // connect to Mongodb

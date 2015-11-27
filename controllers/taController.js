@@ -1,103 +1,77 @@
-var resumeArray = require('../seed.js');
 var natural = require('natural');
-TfIdf = natural.TfIdf;
-var express = require('express');
+var mongoose = require('mongoose');
+var ResumeData = require('../models/resume_data.js');
+var analysis = require('../helpers/text_analysis.js');
 
+/*************************************/
+var ANALYZE_LIMIT = 100;
+var DISPLAY_LIMIT = 10;
+var CLOUD_SCALING = 100;
+/*************************************/
 
 module.exports.controller = function(app) {
-
-   app.get('/analysis', function(req, res) {
-      // create a new classifier and add socuments
-      classifier = new natural.BayesClassifier();
-      resumeArray.forEach(function(value, index, array) {
-         classifier.addDocument(value.experiences[0].jobdescription, value.summary.jobtitle);
-         // console.log("document" + i + " (" + value.summary.jobtitle + ") has been trained");
+// test route to return random resume
+   app.get('/randomResume', (req, res) => {
+      ResumeData.findOne((err, resume) => {
+         res.send(resume);
       });
-      //train the classifier
-      classifier.train();
-      // NOTE: sends array of relative fit in each class
-      // res.send(classifier.getClassifications(classTest));
-      //NOTE: returns string of the most closely matched class.
-      res.send(classifier.classify(classTest));
    });
-
-   // route to view the resume array tes
-   app.get('/resumeArrayTest', (req, res) => {
-      res.send(resumeArray[0]);
-   });
-
-   //return list of 10 most important words in EVERY document
-   app.get('/tfidf', (req, res) => {
-      tfidf = new TfIdf();
-      var output = [];
-      // save length of resume array
-      var len = resumeArray.length;
-      //add job description to each document
-      resumeArray.forEach(function(value, index, array) {
-         tfidf.addDocument(value.experiences[0].jobdescription);
-      });
-      // display the first 10 most important words in each document.
-      for (var i = 1; i < len; i++) {
-         var report = "Document [" + i + "] ";
-         tfidf.listTerms(i).forEach(function(item, index) {
-            //only list the first 10 words
-            if (index < 10) {
-               report = report + "word #" + index + ": " + item.term + ', ';
-            }
-         });
-         // console.log(report);
-         output.push(report);
-      }
-      res.send(output);
-   });
-
-   //return important of wrods to different documents
-   // sample uri component "design%20development%20creativity%20analysis"
-   app.get('/tfidf/:compare', (req, res) => {
-      tfidf = new TfIdf();
-      var output = []
-         //  //NOTE : does this need to be decoded instead?
-      var compare = decodeURIComponent(req.params.compare);
-
-      //add job description documents to the tfidf
-      resumeArray.forEach(function(value, index, array) {
-         tfidf.addDocument(value.experiences[0].jobdescription);
-      });
-      // compare the passed in variables to this document.
-      tfidf.tfidfs(compare, function(i, measure) {
-         output.push("the strings', '" + compare + "' importance to document# " + i + "is " + measure);
-      })
-      res.send(output);
-   });
-
-   app.get('/cloud', (req, res) => {
-      console.log("got to the cloud route");
-      var output = [];
-      //create a new tfidf object
-      tfidf = new TfIdf();
-      // add the selected documents to the tfidf
-      //NOTE: below is the test function
-      resumeArray.forEach(function(value, index, array) {
-         tfidf.addDocument(value.experiences[0].jobdescription);
-      });
-
-      console.log("added all of the documents");
-      //tfidf.listTerms(i )
-      var counter = 0;
-      //find a sensible way to choose which document.
-      tfidf.listTerms(1).forEach(function(item) {
-         // counter sets the number of values in the wordcloud
-         if (counter <= 50) {
-            // scale the value of item.tfidf for the view in showCloud
-            var itemScaled = item.tfidf * 10;
-            //push hash format required for d3-cloud
-            output.push({
-               "text": item.term,
-               "size": itemScaled
-            });
-            counter += 1;
+// match text content to selection of resumes
+   app.get('/analyzeResume/:query/:match', function(req, res) {
+      // NOTE: arbitrary limit to 100 to speed up response time
+      ResumeData.find({
+         //match query params instead of exact string
+         title: {
+            "$regex": req.params.query,
+            "$options": "i"
          }
-      });
-      res.send(output);
+      }).limit(ANALYZE_LIMIT).exec(
+         function(err, resumes) {
+            var result = analysis.classify(resumes, req.params.match);
+            res.send(result);
+         });
    });
+// return the top 10 words matching a query
+   app.get('/tfidf/:query', (req, res) => {
+      ResumeData.find({
+         //match query params instead of exact string
+         title: {
+            "$regex": req.params.query,
+            "$options": "i"
+         }
+      }).limit( ANALYZE_LIMIT ).exec(
+         function(err, resumes) {
+            var result = analysis.mostImportantWords(resumes, DISPLAY_LIMIT, 1);
+            res.send(result);
+         });
+   });
+// return relative importance of compare to doc wher title = query
+   app.get('/tfidf/:query/:compare', (req, res) => {
+      ResumeData.find({
+         //match query params instead of exact string
+         title: {
+            "$regex": req.params.query,
+            "$options": "i"
+         }
+      }).limit(ANALYZE_LIMIT).exec(
+         function(err, resumes) {
+            var result = analysis.compareTextImportance(resumes, req.params.compare);
+            res.send(result);
+         });
+   });
+// return top 10 words matching query AND scale numbers for D3
+   app.get('/cloud/:query', (req, res) => {
+      ResumeData.find({
+         //match query params instead of exact string
+         title: {
+            "$regex": req.params.query,
+            "$options": "i"
+         }
+      }).limit( ANALYZE_LIMIT ).exec(
+         function(err, resumes) {
+            var result = analysis.mostImportantWords(resumes, DISPLAY_LIMIT, 10);
+            res.send(result);
+         });
+   });
+
 }
