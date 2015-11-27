@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var app = express();
 var fs = require('fs');
+
 //requirements for passport
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -30,20 +31,26 @@ require('./routes.js')(app, passport); // load our routes and pass in our app an
 
 
 
+var ResumeData = require('./models/resume_data.js');
+
+
 // use an index.html
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+   extended: false
+}));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 //app.use(express.static('public'));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 app.use(express.static(__dirname + '/public'))
-// log with morgan
+   // log with morgan
 app.use(logger('dev'));
 app.set('view engine', 'ejs');
+
 // connect to Mongodb
-mongoose.connect('mongodb://localhost/resu-me', (err)=>{
-   if(err){
+mongoose.connect('mongodb://localhost/resu-me', (err) => {
+   if (err) {
       console.log(err);
    } else {
       console.log('connection successfull');
@@ -55,14 +62,20 @@ require('./config/passport')(passport); // pass passport for configuration
 
 
 app.listen(3000, ()=>{ console.log("Resu-me listening on Port 3000")});
+=======
 
-app.get('/', (req, res)=>{
+
+app.get('/', (req, res) => {
    res.render('index', req.body);
 });
 
-app.get('/resumeform', function (req, res) {
-    res.render('resume');
-  });
+app.get('/test', function(req, res) {
+   ResumeData.find({
+      title: "computer programmer"
+   }).exec(function(err, resumes) {
+      res.send(resumes);
+   });
+});
 
 //
 // fs.readdirSync('./controllers').forEach(function (file) {
