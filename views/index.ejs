@@ -1,0 +1,109 @@
+
+    <!doctype html>
+    <html>
+
+    <head>
+    <% include ../partials/head %>
+    </head>
+
+    <body>
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Resu-Me</a>
+          </div>
+          <div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Page 0</a></li>
+              <li><a href="#">Page 1</a></li>
+              <li><a href="#">Page 2</a></li>
+              <li><a href="#">Page 3</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="#">
+                  <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="glyphicon glyphicon-log-in"></span> Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="jumbotron text-center">
+          <h1>
+            <span class="fa fa-lock"></span> Welcome to
+            <br> Resu-Me</br>
+          </h1>
+          <p>Login or Register with:</p>
+          <a href="/login" class="btn btn-default">
+            <span class="fa fa-user"></span> Local Login</a>
+          <a href="/signup" class="btn btn-default">
+            <span class="fa fa-user"></span> Local Signup</a>
+        </div>
+        <!--  <div class="row">
+    		<h2>Search our resume database</h2>
+               <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" class="  search-query form-control" placeholder="Search" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-danger" type="button">
+                                            <span class=" glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+    	</div>
+      <div class="row">
+        <h2>Write a new resume</h2>
+               <div id="write-new-resume">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-danger" type="button">
+                                            <span class=" glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+      </div>
+    </div>
+    -->
+        <div class="container">
+          <!--Row with two equal columns-->
+          <div class="row">
+            <div class="col-sm-6 text-center">
+              <!--Column left-->
+              <h1>Search Our Database</h1>
+              <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                  <input type="text" class="  search-query form-control input-lg" placeholder="Search" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger btn-lg" type="button">
+                      <span class=" glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 text-center">
+              <!--Column right-->
+              <h1>Write New Resume</h1>
+              <div id="write-new-resume">
+                <span class="input-group-btn">
+                  <button id='create-new-resume' class="btn btn-danger btn-lg btn-block" type="button">
+                    <span class=" glyphicon glyphicon-pencil"></span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+  <% include ../partials/footer %>
+    </body>
+
+    </html>

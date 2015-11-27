@@ -1,11 +1,12 @@
-var express = require('express'),
-   mongoose = require('mongoose'),
-   bodyParser = require('body-parser'),
-   logger = require('morgan'),
-   fs = require('fs'),
-   app = express(),
-   request = require('request');
-ResumeData = require('./models/resume_data.js');
+
+var express = require('express');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var logger = require('morgan');
+var app = express();
+var fs = require('fs');
+var ResumeData = require('./models/resume_data.js');
+>>>>>>> dev
 
 // var User = require('./controllers/userController.js');
 // use an index.html
@@ -14,12 +15,16 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
-app.use(express.static('public'));
+
+//app.use(express.static('public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
+>>>>>>> dev
 
-
-// log with morgan
+app.use(express.static(__dirname + '/public'))
+   // log with morgan
 app.use(logger('dev'));
+app.set('view engine', 'ejs');
+
 // connect to Mongodb
 mongoose.connect('mongodb://localhost/resu-me', (err) => {
    if (err) {
@@ -37,12 +42,16 @@ app.get('/', (req, res) => {
    res.render('index', req.body);
 });
 
-app.get('/thisTest', (req, res) => {
-   ResumeData.find().exec((err, resumes) => {
-      // var test = resumes[3];
+
+app.get('/test', function(req, res) {
+   ResumeData.find({
+      title: "computer programmer"
+   }).exec(function(err, resumes) {
+
       res.send(resumes);
    });
 });
+
 
 //Controllers
 fs.readdirSync('./controllers').forEach(function(file) {
