@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Rezu-Me App
 
 Rezu-Me allows users to see how their resumes compare to those within their chosen industry. Using data analysis and visualization, users search for their job of choice, Rezu-Me scans its database and the user receives results in a functional and aesthetic way.
@@ -33,3 +34,15 @@ If you would like to download the code and try it for yourself:
 - Data scraping
 - Data analysis
 - Data visualization
+=======
+
+Naming conventions:
+
+var mostVariables
+
+var ObjectNameVariables = {
+    keyslikethis: "asdf"  
+}
+
+$('html-div-name')
+>>>>>>> d8b033dab287565daf840a9c221e151f63ef4800
