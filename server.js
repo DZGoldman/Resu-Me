@@ -78,12 +78,42 @@ app.get('/test', function(req, res) {
    });
 });
 
-app.get('/newresume', function (req, res) {
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
+
+app.get('/newresume', isLoggedIn, function (req, res) {
    res.render('new_resume', {req:req})
 })
 
 app.post('/newresume', function (req,res) {
-  res.send(req.body)
+
+  var sub= req.body
+  var newResume = new UserResume();
+  newResume.name = sub.Name;
+  newResume.streetAddress = sub.Address;
+  newResume.email = sub.Email;
+  newResume.phone = sub.Phone;
+  //newResume.education =
+  //newResume.experiences
+  //newResume.endDate -caps problem
+  newResume.summary = sub.Summary
+  req.user.resumes.push(newResume)
+  res.send(req.user)
+
+
+
+  console.log(newResume);
+
+
+
 })
 
 //
