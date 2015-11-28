@@ -1,10 +1,13 @@
 //click events:
 console.log('hello dave');
 $(function () {
-
   $('#Experience_Button').click(function () {
+    console.log( 'clicked');
+    console.log($('#experience-template').html());
 
-  //#('#experience-container').append('#new-experience')
+    var $copy = $($('#experience-template').html()).clone();
+
+  $('#experience-container').append($copy)
   });
 //sign up
 // login
