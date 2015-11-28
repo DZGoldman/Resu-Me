@@ -2,98 +2,108 @@
 <html>
 
 <head>
-<% include ../partials/head %>
+  <% include ../partials/head %>
 </head>
 
 <style>
-  body  { padding-top: 50px;  }
+  body {
+    padding-top: 50px;
+  }
 </style>
 
 <body>
-<form class="form-horizontal" action="/newresume" method="post">
-<fieldset>
+  <form class="form-horizontal" action="/newresume" method="post">
+    <fieldset>
 
-<!-- Form Name -->
-<legend>Add New Resume Form</legend>
+      <!-- Form Name -->
+      <legend>Add New Resume Form</legend>
 
-<!-- Name input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Name</label>
-  <div class="col-md-4">
-  <input id="Name" name="Name" type="text" placeholder="Name" class="form-control input-md">
+      <!-- Name input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Name</label>
+        <div class="col-md-4">
+          <input id="Name" name="Name" type="text" placeholder="Name" class="form-control input-md">
 
-  </div>
-</div>
+        </div>
+      </div>
 
-<!-- Address input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Address</label>
-  <div class="col-md-4">
-  <input id="Address" name="Address" type="text" placeholder="Street Address" class="form-control input-md">
+      <!-- Address input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Address</label>
+        <div class="col-md-4">
+          <input id="Address" name="Address" type="text" placeholder="Street Address" class="form-control input-md">
 
-  </div>
-</div>
+        </div>
+      </div>
 
-<!-- Email input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Email</label>
-  <div class="col-md-4">
-  <input id="Email" name="Email" type="text" placeholder="Email Address" class="form-control input-md">
+      <!-- Email input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Email</label>
+        <div class="col-md-4">
+          <input id="Email" name="Email" type="text" placeholder="Email Address" class="form-control input-md">
 
-  </div>
-</div>
+        </div>
+      </div>
 
-<!-- Phone input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Phone</label>
-  <div class="col-md-4">
-  <input id="Phone" name="Phone" type="text" placeholder="(000) 000-0000" class="form-control input-md">
+      <!-- Phone input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Phone</label>
+        <div class="col-md-4">
+          <input id="Phone" name="Phone" type="text" placeholder="(000) 000-0000" class="form-control input-md">
 
-  </div>
-</div>
-
-
-<!-- Education input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Education</label>
-  <div class="col-md-4">
-  <input id="Education" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
-
-  </div>
-</div>
-
-<!-- Experience input -->
-<% include ../partials/add_new_experience  %>
-<!-- Add New Experience button, *needs to trigger new experience partial* -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="singlebutton"></label>
-  <div class="col-md-4">
-    <button id="Experience_Button" name="Experience_Button" class="btn btn-danger">Add Additional Experience</button>
-  </div>
-</div>
+        </div>
+      </div>
 
 
+      <!-- Education input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Education</label>
+        <div class="col-md-4">
+          <input id="Education" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
 
-<!-- Summary input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Summary</label>
-  <div class="col-md-4">
-  <input id="Summary" name="Summary" type="text" placeholder="Summary" class="form-control input-md">
-  </div>
-</div>
+        </div>
+      </div>
 
-<!-- Submit New Resume Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="singlebutton"></label>
-  <div class="col-md-4">
-    <button id="Submit_Button" name="Submit_Button" <a href="#"
-    class="btn btn-danger">Add New Resume</a></button>
-  </div>
-</div>
+      <!-- Experience input -->
+        <div id='experiences-container'>
+      <% include ../partials/add_new_experience  %>
+    
 
-</fieldset>
-</form>
+      </div>
 
-<% include ../partials/footer %>
+        <!-- Add New Experience button, *needs to trigger new experience partial* -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="singlebutton"></label>
+          <div class="col-md-4">
+            <button id="Experience_Button" name="Experience_Button" class="btn btn-danger">Add Additional Experience</button>
+          </div>
+        </div>
+
+
+
+        <!-- Summary input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="textinput">Summary</label>
+          <div class="col-md-4">
+            <input id="Summary" name="Summary" type="text" placeholder="Summary" class="form-control input-md">
+          </div>
+        </div>
+
+
+          <!-- Submit New Resume Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+              <button id="Submit_Button" name="Submit_Button" <a href="#" class="btn btn-danger">Add New Resume</a>
+              </button>
+            </div>
+          </div>
+
+
+    </fieldset>
+  </form>
+
+  <% include ../partials/footer %>
 </body>
+
 </html>

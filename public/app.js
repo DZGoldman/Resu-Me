@@ -3,7 +3,12 @@ console.log('hello dave');
 $(function () {
 
   $('#Experience_Button').click(function () {
-    console.log('hi')
+  //  console.log('adding new experience', $('#new-experience') );
+  console.log('adding experience');
+
+  var $new = $('#new-experience')
+  console.log($new);
+    $('#experiences-container').append($new)
   });
 //sign up
 // login
