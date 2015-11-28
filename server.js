@@ -89,22 +89,25 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
+
+// get and post routes for submitted a new resume - belong in UserResume controller eventually:
 app.get('/newresume', isLoggedIn, function (req, res) {
    res.render('new_resume', {req:req})
 })
 
 app.post('/newresume', function (req,res) {
-
+  //sub == 'submission'
   var sub= req.body
   var newResume = new UserResume();
+  //make a new resume, give all submission data to its appropriate keys
   newResume.name = sub.Name;
   newResume.streetAddress = sub.Address;
   newResume.email = sub.Email;
   newResume.phone = sub.Phone;
   newResume.education = sub.Education
-  //newResume.experiences
-  //newResume.endDate -caps problem
+  newResume.summary = sub.Summary
 
+  //create a new experience object for the array of experience for each new experience that gets added
   newResume.experiences = [];
   var experienceObject = {}
   sub.textinput.forEach(function (input, index) {
@@ -126,10 +129,9 @@ app.post('/newresume', function (req,res) {
     }
   })
 
-
-  newResume.summary = sub.Summary
+  //give new resume to the current user
   req.user.resumes.push(newResume);
-
+  //save unpdated current user and the resume itself into the db
   newResume.save(function(err) {
       if (err)
           throw err;
@@ -139,10 +141,6 @@ app.post('/newresume', function (req,res) {
           throw err;
   });
 
-
-  //console.log(newResume);
-
-  //res.send(req.body)
   res.render('profile', {req: req, user : req.user})
 })
 
