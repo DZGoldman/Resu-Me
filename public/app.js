@@ -1,15 +1,24 @@
 //click events:
 console.log('hello dave');
 $(function () {
+
   var clickCount =1;
   $('#Experience_Button').click(function () {
     console.log( 'clicked');
 
     var $copy = $($('#experience-template').html()).clone();
-  //
-
   $('#experience-container').append($copy)
   });
+
+  $('#Education_Button').click(function () {
+    console.log( 'clicked');
+
+    var $copy = $($('#Education').html()).clone();
+  $('#education-container').append($copy)
+  });
+
+
+
 //sign up
 // login
 //search box

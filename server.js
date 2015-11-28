@@ -128,15 +128,22 @@ app.post('/newresume', function (req,res) {
 
 
   newResume.summary = sub.Summary
-  req.user.resumes.push(newResume)
-//  res.send(req.body)
+  req.user.resumes.push(newResume);
 
+  newResume.save(function(err) {
+      if (err)
+          throw err;
+  });
+  req.user.save(function(err) {
+      if (err)
+          throw err;
+  });
 
 
   console.log(newResume);
 
-  res.send(req.body)
-  //res.render('profile', {req: req, user : req.user})
+  //res.send(req.body)
+  res.render('profile', {req: req, user : req.user})
 })
 
 //
