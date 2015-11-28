@@ -117,14 +117,14 @@ var experienceObject = {}
 
   newResume.summary = sub.Summary
   req.user.resumes.push(newResume)
-  res.send(req.body)
+//  res.send(req.body)
 
 
 
   console.log(newResume);
 
 
-
+  res.render('profile', {req: req, user : req.user})
 })
 
 //
