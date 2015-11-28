@@ -3,11 +3,10 @@ var express = require('express');
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-<<<<<<< HEAD
+
 var app = express();
-=======
 var logger = require('morgan');
->>>>>>> data-analysis
+
 var fs = require('fs');
 
 //requirements for passport
@@ -86,19 +85,10 @@ app.get('/test', function(req, res) {
    });
 });
 
-<<<<<<< HEAD
-app.get('/resume', function (req, res) {
-   res.render('new_resume', {req:req})  
-})
 
-//
-// fs.readdirSync('./controllers').forEach(function (file) {
-//   if(file.substr(-3) == '.js') {
-//       route = require('./controllers/' + file);
-//       route.controller(app);
-//   }
-// });
-=======
+app.get('/resume', function (req, res) {
+   res.render('new_resume', {req:req})
+})
 
 //Controllers
 fs.readdirSync('./controllers').forEach(function(file) {
@@ -107,4 +97,3 @@ fs.readdirSync('./controllers').forEach(function(file) {
       route.controller(app);
    }
 });
->>>>>>> data-analysis
