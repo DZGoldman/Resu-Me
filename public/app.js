@@ -18,8 +18,6 @@ $(function () {
 // write new resume
 // on click, render resume view, which will have a form.
 // button for form, on click, send ajax request to new resume controller
-
-
   $('#create-new-resume').on('click', function () {
     console.log('making new resume');
 
