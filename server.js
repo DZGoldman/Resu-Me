@@ -1,4 +1,3 @@
-
 var express = require('express');
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
@@ -24,7 +23,9 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({
+   secret: 'ilovescotchscotchyscotchscotch'
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -51,7 +52,7 @@ app.use(express.static(__dirname + '/public'));
 
 // log with morgan
 app.use(logger('dev'));
-  app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // connect to Mongodb
@@ -66,13 +67,15 @@ mongoose.connect('mongodb://localhost/resu-me', (err) => {
 //need this for passport
 require('./config/passport')(passport); // pass passport for configuration
 
-app.listen(3000, ()=>{ console.log("Resu-me listening on Port 3000")});
+app.listen(3000, () => {
+   console.log("Resu-me listening on Port 3000")
+});
 
 
 app.get('/', (req, res) => {
-
-   res.render('index', {req: req});
-
+   res.render('index', {
+      req: req
+   });
 });
 
 
@@ -86,8 +89,10 @@ app.get('/test', function(req, res) {
 });
 
 
-app.get('/resume', function (req, res) {
-   res.render('new_resume', {req:req})
+app.get('/resume', function(req, res) {
+   res.render('new_resume', {
+      req: req
+   })
 })
 
 //Controllers
