@@ -101,12 +101,23 @@ app.post('/newresume', function (req,res) {
   newResume.streetAddress = sub.Address;
   newResume.email = sub.Email;
   newResume.phone = sub.Phone;
-  //newResume.education =
+  newResume.education = sub.Education
   //newResume.experiences
   //newResume.endDate -caps problem
+
+var experienceObject = {}
+  experienceObject.title = sub.textinput[0];
+  experienceObject.startDate = sub.textinput[1];
+  experienceObject.endDate = sub.textinput[2];
+  experienceObject.description = sub.textinput[3];
+
+
+  newResume.experiences = [experienceObject]
+
+
   newResume.summary = sub.Summary
   req.user.resumes.push(newResume)
-  res.send(req.user)
+  res.send(req.body)
 
 
 

@@ -63,12 +63,22 @@
 </div>
 
 <!-- Experience input -->
-<% include ../partials/add_new_experience  %>
+<div id= 'experience-container'>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Experience</label>
+  <div class="col-md-4">
+    <input id="textinput-title-0" name="textinput" type="text" placeholder="Title" class="form-control input-md">
+    <input id="textinput-state-date-0" name="textinput" type="text" placeholder="Start Date" class="form-control input-md">
+    <input id="textinput-end-date-0" name="textinput" type="text" placeholder="End Date" class="form-control input-md">
+    <input id="textinput-description-0" name="textinput" type="text" placeholder="Description" class="form-control input-md">
+  </div>
+</div>
+</div>
 <!-- Add New Experience button, *needs to trigger new experience partial* -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
-    <button id="Experience_Button" name="Experience_Button" class="btn btn-danger">Add Additional Experience</button>
+    <div id="Experience_Button" name="Experience_Button" class="btn btn-danger">Add Additional Experience</div>
   </div>
 </div>
 
@@ -94,6 +104,20 @@
 </fieldset>
 </form>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+// $('#Experience_Button').click(function () {
+//   var new= $('#new-experience')
+//    console.log('hi')
+//     $('#experience-container').append(new)
+//     console.log($('#new-experience'));
+//  });
+//
+
+
+
+
+</script>
 <% include ../partials/footer %>
 </body>
 </html>
