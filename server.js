@@ -77,8 +77,12 @@ app.get('/test', function(req, res) {
    });
 });
 
-app.get('/resume', function (req, res) {
-   res.render('new_resume', {req:req})  
+app.get('/newresume', function (req, res) {
+   res.render('new_resume', {req:req})
+})
+
+app.post('/newresume', function (req,res) {
+
 })
 
 //
