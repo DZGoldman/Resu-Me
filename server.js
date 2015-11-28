@@ -105,14 +105,26 @@ app.post('/newresume', function (req,res) {
   //newResume.experiences
   //newResume.endDate -caps problem
 
-var experienceObject = {}
-  experienceObject.title = sub.textinput[0];
-  experienceObject.startDate = sub.textinput[1];
-  experienceObject.endDate = sub.textinput[2];
-  experienceObject.description = sub.textinput[3];
+  newResume.experiences = [];
+  var experienceObject = {}
+  sub.textinput.forEach(function (input, index) {
 
-
-  newResume.experiences = [experienceObject]
+    switch(index%4){
+      case 0:
+      experienceObject.title = input
+      break;
+      case 1:
+      experienceObject.startDate = input;
+      break;
+      case 2:
+      experienceObject.endDate = input;
+      break;
+      case 3:
+      experienceObject.description = input;
+      newResume.experiences.push(experienceObject)
+      break;
+    }
+  })
 
 
   newResume.summary = sub.Summary
@@ -123,8 +135,8 @@ var experienceObject = {}
 
   console.log(newResume);
 
-
-  res.render('profile', {req: req, user : req.user})
+  res.send(req.body)
+  //res.render('profile', {req: req, user : req.user})
 })
 
 //

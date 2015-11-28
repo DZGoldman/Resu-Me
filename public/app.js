@@ -1,11 +1,12 @@
 //click events:
 console.log('hello dave');
 $(function () {
+  var clickCount =1;
   $('#Experience_Button').click(function () {
     console.log( 'clicked');
-    console.log($('#experience-template').html());
 
     var $copy = $($('#experience-template').html()).clone();
+  //
 
   $('#experience-container').append($copy)
   });
