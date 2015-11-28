@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 //click events:
 console.log('hello dave');
 $(function () {
@@ -92,4 +89,3 @@ var showCloud = function(data) {
          });
    }
 }
->>>>>>> dev

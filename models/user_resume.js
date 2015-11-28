@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 var UserResumeSchema = new mongoose.Schema({
   education: Array,
   experiences: Array,
-  summary: Object
    name: String,
    streetAddress: String,
    email: String,
