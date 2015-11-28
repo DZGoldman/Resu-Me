@@ -32,6 +32,7 @@ require('./routes.js')(app, passport); // load our routes and pass in our app an
 
 
 var ResumeData = require('./models/resume_data.js');
+var UserResume = require('./models/user_resume.js')
 
 
 // use an index.html
@@ -82,7 +83,7 @@ app.get('/newresume', function (req, res) {
 })
 
 app.post('/newresume', function (req,res) {
-
+  res.send(req.body)
 })
 
 //
