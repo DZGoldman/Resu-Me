@@ -2,7 +2,9 @@
 console.log('hello dave');
 $(function () {
 
-
+  $('#Experience_Button').click(function () {
+    console.log('hi')
+  });
 //sign up
 // login
 //search box
@@ -18,12 +20,6 @@ $(function () {
 // on click, render resume view, which will have a form.
 // button for form, on click, send ajax request to new resume controller
 
-
-  $('#create-new-resume').on('click', function () {
-    console.log('making new resume');
-
-   $.get('/resumeform') // render ejs
-  })
 
 
   //submit a new resume

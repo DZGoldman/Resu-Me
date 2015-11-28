@@ -63,16 +63,7 @@
 </div>
 
 <!-- Experience input -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Experience</label>
-  <div class="col-md-4">
-    <input id="Title" name="Title" type="text" placeholder="Title" class="form-control input-md">
-    <input id="Start Date" name="Start Date" type="text" placeholder="Start Date" class="form-control input-md">
-    <input id="End Date" name="End Date" type="text" placeholder="End Date" class="form-control input-md">
-    <input id="Description" name="Description" type="text" placeholder="Description" class="form-control input-md">
-  </div>
-</div>
-
+<% include ../partials/add_new_experience  %>
 <!-- Add New Experience button, *needs to trigger new experience partial* -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="singlebutton"></label>
@@ -81,13 +72,6 @@
   </div>
 </div>
 
-<!-- Will probably need something like this on click:
-
-<head>
-<% include ../partials/head %>
-</head>
-
--->
 
 
 <!-- Summary input-->
@@ -110,5 +94,6 @@
 </fieldset>
 </form>
 
+<% include ../partials/footer %>
 </body>
 </html>
