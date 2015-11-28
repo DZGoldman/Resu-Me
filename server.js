@@ -140,7 +140,7 @@ app.post('/newresume', function (req,res) {
   });
 
 
-  console.log(newResume);
+  //console.log(newResume);
 
   //res.send(req.body)
   res.render('profile', {req: req, user : req.user})

@@ -13,7 +13,8 @@ $(function () {
   $('#Education_Button').click(function () {
     console.log( 'clicked');
 
-    var $copy = $($('#Education').html()).clone();
+    var $copy = $($('#education-template').html()).clone();
+    console.log($copy);
   $('#education-container').append($copy)
   });
 
