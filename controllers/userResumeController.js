@@ -22,8 +22,8 @@ module.exports.controller = function (app) {
 
 
   app.get('/newresume', isLoggedIn, function (req, res) {
-    var foundthing={};
-     res.render('new_resume', {req:req})
+    var foundthing={education:[], experiences: []};
+     res.render('new_resume', {req:req, foundthing: foundthing})
   })
 
   app.post('/newresume', function (req,res) {
