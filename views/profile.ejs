@@ -23,10 +23,19 @@
                 <h3><span class="fa fa-user"></span> Local</h3>
 
                     <p>
-                        <strong>username</strong>: <%= user.username %><br>
-                        <strong>resumes</strong>: <%= user.resumes.length %><br>
+                        <strong>Username</strong>: <%= user.username %><br>
+                        <strong>Resumes:</strong>:<br>
+                        <ul>
+                          <% user.resumes.forEach(function(resume){ %>
+                            <li><%= resume.name %></li>
 
-                        <strong>email</strong>: <%= user.local.email %><br>
+                            <%}) %>
+
+                        </ul>
+
+
+
+                        <strong>Email</strong>: <%= user.local.email %><br>
                     </p>
 
             </div>
