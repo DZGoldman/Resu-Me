@@ -77,8 +77,8 @@ module.exports.controller = function (app) {
   });
 
   app.get('/resume/delete/:id', function (req, res) {
-    var ID = req.params.id
-    UserResume.remove({_id: ID}, function (err, result) {
+    var resumeID = req.params.id
+    UserResume.remove({_id: resumeID}, function (err, result) {
       if (err) {
         console.log(err);
       }else {
@@ -87,7 +87,7 @@ module.exports.controller = function (app) {
         User.findById(userID,function (err,user) {
           if (err) throw err;
           user.resumes.forEach(function (resume, index) {
-            if (resume._id==ID) {
+            if (resume._id==resumeID) {
                 user.resumes.splice(index, 1);
                 return
               }
@@ -98,25 +98,31 @@ module.exports.controller = function (app) {
           })
         })
 
-        req.user.save;
-        // resumes.forEach(function (resume, index) {
-        //   if (resume._id==ID) {
-        //     console.log('found ya');
-        //     resumes.splice(index,1)
-        //     req.user.save(function (err) {
-        //       if (err) {
-        //         throw err
-        //       }
-        //     })
-        //   }
-        // })
       }
-          })
-
+    })
 
         res.render('profile', {req: req, user : req.user})
-  }
-  )
+  })
 
+  app.get('/resume/makecurrent/:id',function (req,res) {
+    var resumeID = req.params.id
+    var userID = req.user._id;
+    User.findById(userID,function (err,user) {
+      if (err) throw err;
+      user.resumes.forEach(function (resume, index) {
+        if (resume._id==resumeID) {
+            user.resumes.splice(index, 1);
+            user.resumes.push(resume)
+            return
+          }
+      })
+
+      user.save(function (err) {
+        if (err) throw err;
+      })
+    })
+
+    res.render('profile', {req: req, user : req.user})
+  })
 
 }
