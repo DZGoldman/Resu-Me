@@ -3,10 +3,6 @@
 
 <head>
    <% include ../partials/head %>
-      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-      <!-- load bootstrap css -->
-      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-      <!-- load fontawesome -->
 
 </head>
 <style>
@@ -16,26 +12,20 @@
 </style>
 
 <body>
-   <div class="container"  >
-      <div class="col-sm-8 col-sm-offset-2" id="cloudy" style="border: 3px solid red">
+   <div class="container">
 
-         <h1>got to visualization partial</h1>
-
-<input type="text" id="query" placeholder="Search"> </input>
-<button type="button" name=""></button>
-
+      <div class="col-sm-4 col-sm-offset-4">
+         <h1 style="text-align: center;">Visualize the Job you want</h1>
+         <input type="text" name="job_title" id="job_title" placeholder="Enter a job title">
+         <button class="btn btn-default" id="cloudQuery"> Submit </button>
       </div>
+      <hr>
+      <div class="col-sm-8 col-sm-offset-2 well well-lg" id="cloudy"></div>
 
    </div>
 
    <% include ../partials/footer %>
-   <script src="bower_components/d3/d3.min.js"></script>
-   <script src="bower_components/d3-cloud/build/d3.layout.cloud.js"></script>
-   <!-- <script src="AKW.d3.layout.cloud.js"></script> -->
-      <script src="app.js"></script>
-      <script>
-         $('body').ready(getCloudData);
-      </script>
+
 
 </body>
 
