@@ -11,12 +11,12 @@ ROUTES:
 
 
 */
-
-
 module.exports.controller = function(app) {
    // Word cloud '/displayCloud'
    app.get('/displayCloud', (req, res) => {
       res.render('visualization.ejs', {req: req});
    });
 
+
+// compare the visuals of the resume 
 }

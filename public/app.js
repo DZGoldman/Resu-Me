@@ -23,49 +23,49 @@ $(function () {
 
  // upload a resume
 
-
 })
 
 
 
 var getCloudData = function() {
-   // get the data from the cloud route
-   // format it and pass it into showCloud
-   var TESTQUERY = "computer programmer"
-   $.get('/cloud/' + TESTQUERY ).done(showCloud);
+      var query = '/cloud/' + $("input#query").val();
+      $.get(query).done(showCloud);
 }
 
 // append a wordcloud with the class 'wordcloud'
 var showCloud = function(data) {
-   // $('.wordcloud').remove();
-   var frequency_list = data;
+   console.log("got to the d3 display function ");
+
+   //have to save as a variable in order to access.
+   // data[0] is arbitrary
+   var frequency_list = data[2].data;
    var color = d3.scale.linear()
-      //maps different colors to this range of colors
       .domain([0, 1, 2, 3, 4, 5, 6, 10, 15, 20, 100])
       .range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
 
-   d3.layout.cloud().size([800, 300])
+   d3.layout.cloud()
+   // .size([800, 300])
       .words(frequency_list)
+      .padding(5)
       .rotate(0)
+      .font("Impact")
       .fontSize(function(d) {
-         return d.size;
+         return d.size * 3;
       })
       .on("end", draw)
       .start();
 
    function draw(words) {
-      // change here to define what happens after the rout is clicked
-      d3.select(".container").append("svg")
-         .attr("width", 850)
-         .attr("height", 350)
+      d3.select("#cloudy").append("svg")
+         .attr("width", 960)
+         .attr("height", 605)
          .attr("class", "wordcloud")
+         .style("border", "3px solid black")
          .append("g")
          // without the transform, words words would get cutoff to the left and top, they would
          // appear outside of the SVG area
-         .attr("transform", "translate(320,200)")
-         //select the words that you want to add
+         .attr("transform", "translate(480,300)")
          .selectAll("text")
-         //use the array set by .words() to populate the fill.
          .data(words)
          .enter().append("text")
          .style("font-size", function(d) {
