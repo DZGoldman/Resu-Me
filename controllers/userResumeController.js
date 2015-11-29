@@ -17,14 +17,9 @@ module.exports.controller = function (app) {
       res.redirect('/');
   }
 
-
-
   app.get('/resumeform', function (req, res) {
     res.render('../views/resume.ejs');
-
   });
-
-
 
   app.get('/newresume', isLoggedIn, function (req, res) {
      res.render('new_resume', {req:req})
@@ -41,12 +36,10 @@ module.exports.controller = function (app) {
     newResume.phone = sub.Phone;
     newResume.education = sub.Education
     newResume.summary = sub.Summary
-
     //create a new experience object for the array of experience for each new experience that gets added
     newResume.experiences = [];
     var experienceObject = {}
     sub.textinput.forEach(function (input, index) {
-
       switch(index%4){
         case 0:
         experienceObject.title = input
@@ -63,7 +56,6 @@ module.exports.controller = function (app) {
         break;
       }
     })
-
     //give new resume to the current user
     req.user.resumes.push(newResume);
     //save unpdated current user and the resume itself into the db
@@ -82,31 +74,43 @@ module.exports.controller = function (app) {
 
   app.get('/resume/edit/:id', function (req, res) {
   //  var UserResume.findById(req.params.id);
-
-
   });
 
   app.get('/resume/delete/:id', function (req, res) {
     var ID = req.params.id
     UserResume.remove({_id: ID}, function (err, result) {
-              if (err) {
-                console.log(err);
-              }else {
-                console.log('deleted');
-                req.user.resumes=[];
-                req.user.save;
-                // resumes.forEach(function (resume, index) {
-                //   if (resume._id==ID) {
-                //     console.log('found ya');
-                //     resumes.splice(index,1)
-                //     req.user.save(function (err) {
-                //       if (err) {
-                //         throw err
-                //       }
-                //     })
-                //   }
-                // })
+      if (err) {
+        console.log(err);
+      }else {
+        console.log('deleted');
+        var userID = req.user._id;
+        User.findById(userID,function (err,user) {
+          if (err) throw err;
+          user.resumes.forEach(function (resume, index) {
+            if (resume._id==ID) {
+                user.resumes.splice(index, 1);
+                return
               }
+          })
+
+          user.save(function (err) {
+            if (err) throw err;
+          })
+        })
+
+        req.user.save;
+        // resumes.forEach(function (resume, index) {
+        //   if (resume._id==ID) {
+        //     console.log('found ya');
+        //     resumes.splice(index,1)
+        //     req.user.save(function (err) {
+        //       if (err) {
+        //         throw err
+        //       }
+        //     })
+        //   }
+        // })
+      }
           })
 
 
