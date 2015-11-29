@@ -33,6 +33,7 @@ require('./routes.js')(app, passport); // load our routes and pass in our app an
 
 var ResumeData = require('./models/resume_data.js');
 var UserResume = require('./models/user_resume.js')
+var User = require('./models/user.js')
 
 
 // use an index.html
@@ -144,10 +145,47 @@ app.post('/newresume', function (req,res) {
   res.render('profile', {req: req, user : req.user})
 })
 
-//
-// fs.readdirSync('./controllers').forEach(function (file) {
-//   if(file.substr(-3) == '.js') {
-//       route = require('./controllers/' + file);
-//       route.controller(app);
-//   }
-// });
+
+app.get('/resume/edit/:id', function (req, res) {
+//  var UserResume.findById(req.params.id);
+
+
+});
+
+app.get('/resume/delete/:id', function (req, res) {
+  var ID = req.params.id
+  UserResume.remove({_id: ID}, function (err, result) {
+            if (err) {
+              console.log(err);
+            }else {
+              console.log('deleted');
+              req.user.resumes=[];
+              req.user.save;
+              // resumes.forEach(function (resume, index) {
+              //   if (resume._id==ID) {
+              //     console.log('found ya');
+              //     resumes.splice(index,1)
+              //     req.user.save(function (err) {
+              //       if (err) {
+              //         throw err
+              //       }
+              //     })
+              //   }
+              // })
+            }
+        })
+
+
+
+
+      res.render('profile', {req: req, user : req.user})
+}
+)
+
+
+fs.readdirSync('./controllers').forEach(function (file) {
+  if(file.substr(-3) == '.js') {
+      route = require('./controllers/' + file);
+      route.controller(app);
+  }
+});

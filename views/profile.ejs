@@ -11,7 +11,7 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1><span class="fa fa-anchor"></span> <%= user.username%>'s Profile Page </h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
@@ -20,14 +20,18 @@
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+                <h3><span class="fa fa-user"></span> Info</h3>
 
                     <p>
-                        <strong>Username</strong>: <%= user.username %><br>
-                        <strong>Resumes:</strong>:<br>
+                        <strong>Email</strong>: <%= user.local.email %><br>
+                        <strong>Resumes</strong>:<br>
                         <ul>
                           <% user.resumes.forEach(function(resume){ %>
-                            <li><%= resume.summary %></li>
+                            <li><%= resume.summary %>
+                              <!-- routes are a placeholder for now -->
+
+                            </li><a href='/resume/edit/<%=resume._id %>'>Edit</a>
+                            <a href='/resume/delete/<%=resume._id %>'>Delete</a>
 
                             <%}) %>
 
@@ -35,7 +39,7 @@
 
 
 
-                        <strong>Email</strong>: <%= user.local.email %><br>
+
                     </p>
 
             </div>
