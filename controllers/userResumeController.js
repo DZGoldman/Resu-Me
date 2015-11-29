@@ -75,13 +75,13 @@ module.exports.controller = function (app) {
 var resumeID = req.params.id;
 
 console.log('editroute', resumeID);
-UserResume.findById(resumeID, function (err, result) {
+UserResume.findById(resumeID, function (err, foundthing) {
   if (err) {
     console.log(err);
   }else {
-    console.log('success:',result.summary);
+    console.log('success:', foundthing.summary);
 
-    res.render('new_resume', {req: req})
+    res.render('new_resume', {req: req, foundthing: foundthing})
   }
 
 })
