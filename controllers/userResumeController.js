@@ -8,11 +8,9 @@ var User = require('../models/user.js')
 module.exports.controller = function (app) {
 
   function isLoggedIn(req, res, next) {
-
       // if user is authenticated in the session, carry on
       if (req.isAuthenticated())
           return next();
-
       // if they aren't redirect them to the home page
       res.redirect('/');
   }
@@ -67,10 +65,8 @@ module.exports.controller = function (app) {
         if (err)
             throw err;
     });
-
     res.render('profile', {req: req, user : req.user})
   })
-
 
   app.get('/resume/edit/:id', function (req, res) {
   //  var UserResume.findById(req.params.id);
@@ -92,18 +88,13 @@ module.exports.controller = function (app) {
                 return
               }
           })
-
           user.save(function (err) {
             if (err) throw err;
           })
         })
-
       }
     })
-
-        //res.render('profile', {req: req, user : req.user});
-        res.redirect('/profile')
-
+    res.redirect('/profile')
   })
 
   app.get('/resume/makecurrent/:id',function (req,res) {
@@ -118,13 +109,11 @@ module.exports.controller = function (app) {
             return
           }
       })
-
       user.save(function (err) {
         if (err) throw err;
       })
     })
-
-      res.redirect('/profile')
+    res.redirect('/profile')
   })
 
 }
