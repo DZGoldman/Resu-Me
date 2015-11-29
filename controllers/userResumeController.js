@@ -101,7 +101,9 @@ module.exports.controller = function (app) {
       }
     })
 
-        res.render('profile', {req: req, user : req.user})
+        //res.render('profile', {req: req, user : req.user});
+        res.redirect('/profile')
+
   })
 
   app.get('/resume/makecurrent/:id',function (req,res) {
@@ -122,7 +124,7 @@ module.exports.controller = function (app) {
       })
     })
 
-    res.render('profile', {req: req, user : req.user})
+      res.redirect('/profile')
   })
 
 }
