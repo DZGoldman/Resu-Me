@@ -12,7 +12,11 @@
 </style>
 
 <body>
+  <% if(foundthing.experiences.length==0){ %>
   <form class="form-horizontal" action="/newresume" method="post">
+    <% }else{ %>
+<form class="form-horizontal" action="/updateresume" method="post">
+      <% } %>
     <fieldset>
 
       <!-- Form Name -->
@@ -114,6 +118,15 @@
         <label class="col-md-4 control-label" for="textinput">Summary:</label>
         <div class="col-md-4">
           <input value ='<%= foundthing.summary %>' id="Summary" name="Summary" type="text" placeholder="Summary" class="form-control input-md">
+
+        </div>
+      </div>
+
+    <!-- hidden div to carry ID to edit form -->
+      <div class="form-group">
+        <label class="col-md-4 control-label hidden" for="textinput">Summary:</label>
+        <div class="col-md-4">
+          <input value ='<%= foundthing._id %>' id="ID" name="ID" type="text" placeholder="ID" class="form-control input-md">
 
         </div>
       </div>
