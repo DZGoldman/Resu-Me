@@ -1,7 +1,12 @@
-//click events:
 console.log('hello dave');
-$(function () {
+$(function() {
+   // create a new  resume.
+   $('#create-new-resume').on('click', function() {
+      console.log('making new resume');
+      $.get('/resumeform'); // render ejs
+   });
 
+<<<<<<< HEAD
 // testing function to display the word cloud
 //   $('body').click(getCloudData);
 //sign up
@@ -51,45 +56,54 @@ $('#education-container').append($copy)
 
 
 })
+=======
+   // create a wordcloud when the button is hit
+   $('button#cloudQuery').click(function() {
+      getCloudData();
+   });
+});
+>>>>>>> 0459dfae3fbeb32bdccf5ee15ec6caca1f5ddb82
 
 
 
 var getCloudData = function() {
-   // get the data from the cloud route
-   // format it and pass it into showCloud
-   $.get('/cloud').done(showCloud);
+   var query = '/cloud/' + $("input#job_title").val();
+   console.log(query);
+   $.get(query).done(showCloud);
 }
 
 // append a wordcloud with the class 'wordcloud'
 var showCloud = function(data) {
-   $('.wordcloud').remove();
-   var frequency_list = data;
+   console.log("got to the d3 display function ");
+$('.wordcloud').remove();
+   //have to save as a variable in order to access.
+   // data[0] is arbitrary
+   var frequency_list = data[2].data;
    var color = d3.scale.linear()
-      //maps different colors to this range of colors
       .domain([0, 1, 2, 3, 4, 5, 6, 10, 15, 20, 100])
       .range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
 
-   d3.layout.cloud().size([800, 300])
+//create a function for scaling the size values
+
+   d3.layout.cloud().size([600, 600])
       .words(frequency_list)
+      .padding(5)
       .rotate(0)
+      .font("Impact")
       .fontSize(function(d) {
-         return d.size;
+         return d.size * 3;
       })
       .on("end", draw)
       .start();
 
    function draw(words) {
-      d3.select("body").append("svg")
-         .attr("width", 850)
-         .attr("height", 350)
+      d3.select("#cloudy").append("svg")
+         .attr("width", "100%")
+         .attr("height", 605)
          .attr("class", "wordcloud")
          .append("g")
-         // without the transform, words words would get cutoff to the left and top, they would
-         // appear outside of the SVG area
-         .attr("transform", "translate(320,200)")
-         //select the words that you want to add
+         .attr("transform", "translate(300,300)")
          .selectAll("text")
-         //use the array set by .words() to populate the fill.
          .data(words)
          .enter().append("text")
          .style("font-size", function(d) {

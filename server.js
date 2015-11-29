@@ -94,6 +94,10 @@ app.get('/test', function(req, res) {
 //    })
 // })
 
+app.get('/displayCloud', (req, res) => {
+   res.render('visualization.ejs', {req: req});
+});
+
 //Controllers
 // fs.readdirSync('./controllers').forEach(function(file) {
 //    if (file.substr(-3) == '.js') {

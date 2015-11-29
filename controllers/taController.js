@@ -5,7 +5,7 @@ var analysis = require('../helpers/text_analysis.js');
 
 /*************************************/
 var ANALYZE_LIMIT = 100;
-var DISPLAY_LIMIT = 10;
+var DISPLAY_LIMIT = 30;
 var CLOUD_SCALING = 100;
 /*************************************/
 
@@ -69,7 +69,7 @@ module.exports.controller = function(app) {
          }
       }).limit( ANALYZE_LIMIT ).exec(
          function(err, resumes) {
-            var result = analysis.mostImportantWords(resumes, DISPLAY_LIMIT, 10);
+            var result = analysis.importantWordsCloud(resumes, DISPLAY_LIMIT, 1);
             res.send(result);
          });
    });
