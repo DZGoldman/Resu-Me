@@ -73,7 +73,8 @@ module.exports.controller = function (app) {
   app.get('/resume/edit/:id', function (req, res) {
     //  var UserResume.findById(req.params.id);
 var resumeID = req.params.id;
-console.log(resumeID);
+
+console.log('editroute', resumeID);
 UserResume.findById(resumeID, function (err, result) {
   if (err) {
     console.log(err);
