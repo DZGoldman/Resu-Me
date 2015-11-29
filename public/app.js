@@ -3,17 +3,10 @@ console.log('hello dave');
 $(function () {
 
 // testing function to display the word cloud
-   $('body').click(getCloudData);
+   $('#testCloud').click(getCloudData);
 //sign up
 // login
 //search box
-
-// on click of search,
-// send ajax request to data constroller
-    // .done, get the data, visualize it, put it one the index
-
-
-
 
 // write new resume
 // on click, render resume view, which will have a form.
@@ -38,12 +31,13 @@ $(function () {
 var getCloudData = function() {
    // get the data from the cloud route
    // format it and pass it into showCloud
-   $.get('/cloud').done(showCloud);
+   var TESTQUERY = "computer programmer"
+   $.get('/cloud/' + TESTQUERY ).done(showCloud);
 }
 
 // append a wordcloud with the class 'wordcloud'
 var showCloud = function(data) {
-   $('.wordcloud').remove();
+   // $('.wordcloud').remove();
    var frequency_list = data;
    var color = d3.scale.linear()
       //maps different colors to this range of colors
@@ -60,7 +54,8 @@ var showCloud = function(data) {
       .start();
 
    function draw(words) {
-      d3.select("body").append("svg")
+      // change here to define what happens after the rout is clicked
+      d3.select(".container").append("svg")
          .attr("width", 850)
          .attr("height", 350)
          .attr("class", "wordcloud")

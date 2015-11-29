@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+   <% include ../partials/head %>
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+      <!-- load bootstrap css -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+      <!-- load fontawesome -->
+
+</head>
+<style>
+   body {
+      padding-top: 100px;
+   }
+</style>
+
+<body>
+   <div class="container"  >
+      <div class="col-sm-8 col-sm-offset-2" id="cloudy" style="border: 3px solid red">
+
+         <h1>got to visualization partial</h1>
+      </div>
+
+   </div>
+
+   <% include ../partials/footer %>
+   <script src="bower_components/d3/d3.min.js"></script>
+   <script src="bower_components/d3-cloud/build/d3.layout.cloud.js"></script>
+   <!-- <script src="AKW.d3.layout.cloud.js"></script> -->
+      <script src="d3_visualization.js"></script>
+      <script>
+         $('body').ready(getCloudData);
+      </script>
+
+</body>
+
+</html>

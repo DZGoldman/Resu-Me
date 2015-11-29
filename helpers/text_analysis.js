@@ -16,6 +16,13 @@ var toObj = function(key, value) {
    return obj;
 };
 
+var wordCloudHash = function(text, size){
+   var obj = {};
+   obj["text"] = text;
+   obj["size"] = size;
+   return obj;
+}
+
 module.exports = {
 
    classify: function(resumes, textToMatch) {
@@ -50,6 +57,31 @@ module.exports = {
          });
 
          outputObjArr.push( toObj(resumes[i].title, report) );
+      }
+      return outputObjArr;
+   },
+   importantWordsCloud: function(resumes, numWords, scale) {
+      tfidf = new TfIdf();
+
+      // Add the content of each document
+      resumes.forEach(function(resume, index, array) {
+         var content = resumeContent(resume);
+         tfidf.addDocument(content);
+      });
+
+      // list `numWords` most important terms for each resume
+      var outputObjArr = [];
+      var len = resumes.length
+
+      for (var i = 1; i < len; i++) {
+         var report = [];
+         tfidf.listTerms(i).forEach(function(item, index) {
+            if (index < numWords) {
+               report.push(wordCloudHash(item.term, item.tfidf));
+            }
+         });
+
+         outputObjArr.push( {title: resumes[i].title, data: report});
       }
       return outputObjArr;
    },
