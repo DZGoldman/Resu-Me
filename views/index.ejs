@@ -1,69 +1,78 @@
-  <!doctype html>
-    <html>
+<!doctype html>
+<html>
 
-    <head>
-    <% include ../partials/head %>
+<head>
+  <% include ../partials/head %>
     <% console.log('views connected (and this is where they log!)') %>
 
 
-    </head>
+</head>
 
-    <style>
-      body    { padding-top:100px; }
-    </style>
+<style>
+  body {
+    padding-top: 100px;
+  }
+</style>
 
-    <body>
+<body>
 
-      <div class="container">
-        <div class="jumbotron text-center">
-          <h1>
-            <span class="fa fa-lock"></span> Welcome to
-            <br> Resu-Me</br>
-          </h1>
-          <% if( !req.user){ %>
-          <p>Get Started:</p>
-          <a href="/login" class="btn btn-default">
-            <span class="fa fa-user"></span> Login</a>
-          <a href="/signup" class="btn btn-default">
-            <span class="fa fa-user"></span> Signup</a>
-          <%}  %>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>
+        <span class="fa fa-lock"></span> Welcome to
+        <br> Resu-Me</br>
+      </h1>
+      <% if( !req.user){ %>
+        <p>Get Started:</p>
+        <a href="/login" class="btn btn-default">
+          <span class="fa fa-user"></span> Login</a>
+        <a href="/signup" class="btn btn-default">
+          <span class="fa fa-user"></span> Signup</a>
+        <%}  %>
 
-        </div>
+    </div>
 
-        <div class="container">
-          <!--Row with two equal columns-->
-          <div class="row">
-            <div class="col-sm-6 text-center">
-              <!--Column left-->
-              <h1>Search Our Database</h1>
-              <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                  <input type="text" class="  search-query form-control input-lg" placeholder="Search" />
-                  <span class="input-group-btn">
-                    <button class="btn btn-danger btn-lg" type="button">
-                      <span class=" glyphicon glyphicon-search"></span>
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 text-center">
-              <!--Column right-->
-              <h1>Write New Resume</h1>
-              <div id="write-new-resume">
-                <span class="input-group-btn">
-                  <a href="/resume" class="btn btn-danger btn-lg btn-block" type="button">
-                    <span class=" glyphicon glyphicon-pencil"></span></a>
-                  </button>
-                </span>
-              </div>
+    <div class="container">
+      <!--Row with two equal columns-->
+      <div class="row">
+        <div class="col-sm-6 text-center">
+          <!--Column left-->
+          <h1>Search Our Database</h1>
+          <div id="custom-search-input">
+            <div class="input-group col-md-12">
+              <input type="text" class="  search-query form-control input-lg" placeholder="Search" />
+              <span class="input-group-btn">
+                <button class="btn btn-danger btn-lg" type="button">
+                  <span class=" glyphicon glyphicon-search"></span>
+                </button>
+              </span>
             </div>
           </div>
         </div>
+        <div class="col-sm-6 text-center">
+          <!--Column right-->
+          <% if(req.user) { %>
+          <h1>Write New Resume</h1>
+          <div id="write-new-resume">
+            <span class="input-group-btn">
+              <a href="/newresume" class="btn btn-danger btn-lg btn-block" type="button">
+                <span class=" glyphicon glyphicon-pencil"></span>
+              </a>
+              </button>
+            </span>
+          </div>
+          <%}else{ %>
+          <h1>Login/Sign Up to Write Your Own Resume!</h1>
+          <%} %>
+
+
+        </div>
+      </div>
+    </div>
 
 
 
-  <% include ../partials/footer %>
-    </body>
+    <% include ../partials/footer %>
+</body>
 
-    </html>
+</html>

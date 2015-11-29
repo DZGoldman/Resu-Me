@@ -36,6 +36,8 @@ require('./routes.js')(app, passport); // load our routes and pass in our app an
 
 
 var ResumeData = require('./models/resume_data.js');
+var UserResume = require('./models/user_resume.js')
+var User = require('./models/user.js')
 
 // use an index.html
 app.use(bodyParser.urlencoded({
@@ -85,17 +87,37 @@ app.get('/test', function(req, res) {
    });
 });
 
-
-app.get('/resume', function(req, res) {
-   res.render('new_resume', {
-      req: req
-   })
-})
+//
+// app.get('/resume', function(req, res) {
+//    res.render('new_resume', {
+//       req: req
+//    })
+// })
 
 //Controllers
-fs.readdirSync('./controllers').forEach(function(file) {
-   if (file.substr(-3) == '.js') {
+// fs.readdirSync('./controllers').forEach(function(file) {
+//    if (file.substr(-3) == '.js') {
+//       route = require('./controllers/' + file);
+//       route.controller(app);
+//    }
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
+
+
+// get and post routes for submitted a new resume - belong in UserResume controller eventually:
+
+
+fs.readdirSync('./controllers').forEach(function (file) {
+  if(file.substr(-3) == '.js') {
       route = require('./controllers/' + file);
       route.controller(app);
-   }
+  }
 });

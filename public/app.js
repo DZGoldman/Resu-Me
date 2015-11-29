@@ -3,9 +3,28 @@ console.log('hello dave');
 $(function () {
 
 // testing function to display the word cloud
-   $('body').click(getCloudData);
+//   $('body').click(getCloudData);
 //sign up
 // login
+
+  var clickCount =1;
+  $('#Experience_Button').click(addExperienceField);
+
+  $('#Education_Button').click(addEducationField);
+
+
+//new resume form button helpers:
+var addExperienceField= function () {
+  var $copy = $($('#experience-template').html()).clone();
+$('#experience-container').append($copy)
+}
+
+var addEducationField =function () {
+  var $copy = $($('#education-template').html()).clone();
+  console.log($copy);
+$('#education-container').append($copy)
+}
+
 //search box
 
 // on click of search,

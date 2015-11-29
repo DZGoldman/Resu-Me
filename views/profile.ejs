@@ -11,7 +11,7 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1><span class="fa fa-anchor"></span> <%= user.username%>'s Profile Page </h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
@@ -20,13 +20,31 @@
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+                <h3><span class="fa fa-user"></span> Info</h3>
 
                     <p>
-                        <strong>username</strong>: <%= user.username %><br>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
+                        <strong>Email</strong>: <%= user.local.email %><br>
+                        <strong>Current Resume: </strong><% if(user.resumes.length>0){%>
+                        <%=user.resumes[user.resumes.length-1].summary %>
+                        <% } %>
+                        <br>
+                        <strong>Resumes</strong>:<br>
+
+                        <ul>
+                          <% user.resumes.forEach(function(resume){ %>
+                            <li><%= resume.summary %>
+                              <!-- routes are a placeholder for now -->
+                            </li><a href='/resume/edit/<%=resume._id %>'>Edit</a>
+                            <a href='/resume/delete/<%=resume._id %>'>Delete</a>
+                            <a href="/resume/makecurrent/<%= resume._id%>">Make Current Resume</a>
+
+                            <%}) %>
+
+                        </ul>
+
+
+
+
                     </p>
 
             </div>
