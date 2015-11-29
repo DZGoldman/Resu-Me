@@ -24,7 +24,10 @@
 
                     <p>
                         <strong>Email</strong>: <%= user.local.email %><br>
-                        <strong>Current Resume: </strong><%= user.resumes[user.resumes.length-1].summary %><br>
+                        <strong>Current Resume: </strong><% if(user.resumes.length>0){%>
+                        <%=user.resumes[user.resumes.length-1].summary %>
+                        <% } %>
+                        <br>
                         <strong>Resumes</strong>:<br>
 
                         <ul>
