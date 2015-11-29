@@ -20,9 +20,6 @@ module.exports.controller = function (app) {
       res.redirect('/');
   }
 
-  app.get('/resumeform', function (req, res) {
-    res.render('../views/resume.ejs');
-  });
 
   app.get('/newresume', isLoggedIn, function (req, res) {
      res.render('new_resume', {req:req})
@@ -74,7 +71,20 @@ module.exports.controller = function (app) {
   })
 
   app.get('/resume/edit/:id', function (req, res) {
-  //  var UserResume.findById(req.params.id);
+    //  var UserResume.findById(req.params.id);
+var resumeID = req.params.id;
+console.log(resumeID);
+UserResume.findById(resumeID, function (err, result) {
+  if (err) {
+    console.log(err);
+  }else {
+    console.log('success:',result.summary);
+
+    res.render('new_resume', {req: req})
+  }
+
+})
+
   });
 
   app.get('/resume/delete/:id', function (req, res) {
