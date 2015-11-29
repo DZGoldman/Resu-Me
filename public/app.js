@@ -6,7 +6,6 @@ $(function() {
       $.get('/resumeform'); // render ejs
    });
 
-<<<<<<< HEAD
 // testing function to display the word cloud
 //   $('body').click(getCloudData);
 //sign up
@@ -19,16 +18,6 @@ $(function() {
 
 
 //new resume form button helpers:
-var addExperienceField= function () {
-  var $copy = $($('#experience-template').html()).clone();
-$('#experience-container').append($copy)
-}
-
-var addEducationField =function () {
-  var $copy = $($('#education-template').html()).clone();
-  console.log($copy);
-$('#education-container').append($copy)
-}
 
 //search box
 
@@ -55,14 +44,24 @@ $('#education-container').append($copy)
  // upload a resume
 
 
-})
-=======
+
+
    // create a wordcloud when the button is hit
    $('button#cloudQuery').click(function() {
       getCloudData();
    });
 });
->>>>>>> 0459dfae3fbeb32bdccf5ee15ec6caca1f5ddb82
+
+var addExperienceField= function () {
+  var $copy = $($('#experience-template').html()).clone();
+$('#experience-container').append($copy)
+}
+
+var addEducationField =function () {
+  var $copy = $($('#education-template').html()).clone();
+  console.log($copy);
+$('#education-container').append($copy)
+}
 
 
 
