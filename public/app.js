@@ -1,89 +1,66 @@
-console.log('hello dave');
 $(function() {
-   // create a new  resume.
+
+   /*********  Visualization  *************/
+   // testing function to display the word cloud
+   $('button#search-query').click(getCloudData);
+   //sign up
+   // login
+
+   /*******  Resume Form *********/
+   var clickCount = 1;
+   $('#Experience_Button').click(addExperienceField);
+   $('#Education_Button').click(addEducationField);
+
+   // on click, render resume view, which will have a form.
+   // button for form, on click, send ajax request to new resume controller
    $('#create-new-resume').on('click', function() {
       console.log('making new resume');
-      $.get('/resumeform'); // render ejs
-   });
+      $.get('/resumeform') // render ejs
+   })
 
-<<<<<<< HEAD
-// testing function to display the word cloud
-//   $('body').click(getCloudData);
-//sign up
-// login
 
-  var clickCount =1;
-  $('#Experience_Button').click(addExperienceField);
+   //submit a new resume
 
-  $('#Education_Button').click(addEducationField);
+   // upload a resume
+})
 
+
+
+/*******  Resume Form *********/
 
 //new resume form button helpers:
-var addExperienceField= function () {
-  var $copy = $($('#experience-template').html()).clone();
-$('#experience-container').append($copy)
+var addExperienceField = function() {
+   var $copy = $($('#experience-template').html()).clone();
+   $('#experience-container').append($copy)
 }
 
-var addEducationField =function () {
-  var $copy = $($('#education-template').html()).clone();
-  console.log($copy);
-$('#education-container').append($copy)
+var addEducationField = function() {
+   var $copy = $($('#education-template').html()).clone();
+   console.log($copy);
+   $('#education-container').append($copy)
 }
 
-//search box
-
-// on click of search,
-// send ajax request to data constroller
-    // .done, get the data, visualize it, put it one the index
 
 
-
-
-// write new resume
-// on click, render resume view, which will have a form.
-// button for form, on click, send ajax request to new resume controller
-  $('#create-new-resume').on('click', function () {
-    console.log('making new resume');
-
-   $.get('/resumeform') // render ejs
-  })
-
-
-  //submit a new resume
-
-
- // upload a resume
-
-
-})
-=======
-   // create a wordcloud when the button is hit
-   $('button#cloudQuery').click(function() {
-      getCloudData();
-   });
-});
->>>>>>> 0459dfae3fbeb32bdccf5ee15ec6caca1f5ddb82
-
-
+/*******  Viaualization *********/
 
 var getCloudData = function() {
-   var query = '/cloud/' + $("input#job_title").val();
+   var query = '/cloud/' + $("input#search-query").val();
    console.log(query);
    $.get(query).done(showCloud);
 }
 
-// append a wordcloud with the class 'wordcloud'
 var showCloud = function(data) {
    console.log("got to the d3 display function ");
-$('.wordcloud').remove();
+   $('.wordcloud').remove();
    //have to save as a variable in order to access.
    // data[0] is arbitrary
-   var frequency_list = data[2].data;
+   var frequency_list = data[0].data;
    var color = d3.scale.linear()
       .domain([0, 1, 2, 3, 4, 5, 6, 10, 15, 20, 100])
       .range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
 
-//create a function for scaling the size values
+   //create a function for scaling the size values
 
    d3.layout.cloud().size([600, 600])
       .words(frequency_list)
