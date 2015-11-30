@@ -8,6 +8,7 @@ var logger = require('morgan');
 
 var fs = require('fs');
 
+
 //requirements for passport
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -15,6 +16,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var logger = require('morgan');
 var configDB = require('./config/database.js');
+
 
 
 // set up express app
