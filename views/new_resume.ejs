@@ -7,9 +7,8 @@
 
 <style>
   body {
-    padding-top: 50px;
     margin: 0 auto;
-    padding: 5px;
+    padding: 100px;
   }
 
   .education-input{
@@ -39,7 +38,7 @@
 
       <!-- Name input-->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput">Name/ResumeTitle</label>
+        <label class="col-md-4 control-label" for="textinput">Name/Resume Title</label>
         <div class="col-md-4">
           <input value ='<%= resumeObj.name %>' id="Name" name="Name" type="text" placeholder="Name" class="form-control input-md">
 
@@ -120,13 +119,14 @@
             <% } %>
           </div>
         </div>
+      </div>
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="singlebutton"></label>
           <div class="col-md-4">
             <div id="Experience_Button" name="Experience_Button" class="btn btn-danger">Add Additional Experience</div>
           </div>
         </div>
-      </div>
       <!-- Summary input-->
 
       <div class="form-group">
