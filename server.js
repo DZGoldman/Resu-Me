@@ -87,27 +87,19 @@ app.get('/test', function(req, res) {
    });
 });
 
-//
-// app.get('/resume', function(req, res) {
-//    res.render('new_resume', {
-//       req: req
-//    })
-// })
+
 
 app.get('/displayCloud', (req, res) => {
    res.render('visualization.ejs', {req: req});
 });
 
+
 // get the user from the session
 app.get('/compareResume', (req, res) => {
    res.send(req.user);
 });
-//Controllers
-// fs.readdirSync('./controllers').forEach(function(file) {
-//    if (file.substr(-3) == '.js') {
-//       route = require('./controllers/' + file);
-//       route.controller(app);
-//    }
+
+
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

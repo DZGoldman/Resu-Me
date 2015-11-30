@@ -15,45 +15,39 @@
 <body>
    <div class="container">
 
-      <div class="page-header text-center">
-         <h1>
-            <span class="fa fa-anchor"></span>
-            <%= user.username%>'s Profile Page </h1>
-         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-      </div>
+    <div class="page-header text-center">
+        <h1><%= user.username%>'s Profile Page</h1>
+    </div>
 
-      <div class="row">
 
-         <!-- LOCAL INFORMATION -->
-         <div class="col-sm-6">
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-md-12">
             <div class="well">
-               <h3>
-                  <span class="fa fa-user"></span> Info</h3>
-<button id="analyze-resume">Compare</button>
-               <p>
-                  <strong>Email</strong>:
-                  <%= user.local.email %>
-                     <br>
-                     <strong>Current Resume: </strong>
-                     <% if(user.resumes.length>0){%>
+                <h2><center><span class="glyphicon glyphicon-edit"></span> User Info and Resumes</center></h2>
+
+                    <p>
+                        <strong>Email</strong>: <%= user.local.email %><br>
+                        <strong>Current Resume: </strong><% if(user.resumes.length>0){%>
+
                         <%=user.resumes[user.resumes.length-1].summary %>
                            <hr>
                            <% } %>
                               <br>
                               <strong>Resumes</strong>:
                               <br>
+                        <ul>
+                          <% user.resumes.forEach(function(resume){ %>
+                            <li><%= resume.summary %>
+<!-- NOTE : you can put togehter a function to hit the comparison route here  -->
 
-                              <ul>
-                                 <% user.resumes.forEach(function(resume){ %>
-                                    <li>
-                                       <%= resume.summary %>
-                                          <li>
-                                             <%=user.resumes[user.resumes.length-1].formatted %>
-                                          </li>
-                                          <!-- routes are a placeholder for now -->
-                                    </li><a href='/resume/edit/<%=resume._id %>'>Edit</a>
-                                    <a href='/resume/delete/<%=resume._id %>'>Delete</a>
-                                    <a href="/resume/makecurrent/<%= resume._id%>">Make Current Resume</a>
+                              <!-- routes are a placeholder for now -->
+                            </li><a href='/<%=resume._id %>'>Edit</a>
+                            <a href='/resume/delete/<%=resume._id %>'>Delete</a>
+                            <a href="/resume/makecurrent/<%= resume._id%>">Make Current Resume</a>
+
 
                                     <%}) %>
 
@@ -65,14 +59,14 @@
                </p>
 
             </div>
-         </div>
 
-      </div>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
 
-   </div>
+
+    </div>
 
    <% include ../partials/footer %>
-
 
 </body>
 

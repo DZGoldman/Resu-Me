@@ -1,4 +1,5 @@
 $(function() {
+<<<<<<< HEAD
 
    /*********  Visualization  *************/
    // testing function to display the word cloud
@@ -7,6 +8,25 @@ $('#analyze-resume').click(function(){
 $('#analyze-resume').css("background-color", "red");
    getClassify() ;
 });
+=======
+   // create a new  resume.
+
+
+// testing function to display the word cloud
+//   $('body').click(getCloudData);
+//sign up
+// login
+
+  var clickCount =1;
+  $('#Experience_Button').click(addExperienceField);
+
+  $('#Education_Button').click(addEducationField);
+
+
+//new resume form button helpers:
+
+//search box
+>>>>>>> dev
 
    //sign up
    // login
@@ -24,9 +44,15 @@ $('#analyze-resume').css("background-color", "red");
    })
 
 
+<<<<<<< HEAD
    //submit a new resume
 
    // upload a resume
+=======
+// write new resume
+// on click, render resume view, which will have a form.
+// button for form, on click, send ajax request to new resume controller
+>>>>>>> dev
 
 })
    var fullText = function (resume){
@@ -54,6 +80,27 @@ var addEducationField = function() {
    $('#education-container').append($copy)
 }
 
+<<<<<<< HEAD
+=======
+
+
+   // create a wordcloud when the button is hit
+   $('button#cloudQuery').click(function() {
+      getCloudData();
+   });
+});
+
+var addExperienceField= function () {
+  var $copy = $($('#experience-template').html()).clone();
+$('#experience-container').append($copy)
+}
+
+var addEducationField =function () {
+  var $copy = $($('#education-template').html()).clone();
+  console.log($copy);
+$('#education-container').append($copy)
+}
+>>>>>>> dev
 
 
 /*******  Viaualization *********/
