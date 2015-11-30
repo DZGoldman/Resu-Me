@@ -3,6 +3,7 @@ var User = require('../models/user.js');
 
 module.exports = {
   deleteResume: function (resumeID, req) {
+    //remove from UserResume database:
     UserResume.remove({
         _id: resumeID
       }, function(err, result) {
@@ -10,6 +11,7 @@ module.exports = {
           console.log(err);
         } else {
           console.log('deleted');
+          //resume from User's resumes
           var userID = req.user._id;
           User.findById(userID, function(err, user) {
             if (err) throw err;
@@ -36,7 +38,7 @@ module.exports = {
     newResume.phone = sub.Phone;
     newResume.education = sub.Education
     newResume.summary = sub.Summary
-      //create a new experience object for the array of experience for each new experience that gets added
+      //create a new experience object for the array of experiences for each new experience that gets added
     newResume.experiences = [];
     var experienceObject = {}
     sub.textinput.forEach(function(input, index) {
@@ -56,7 +58,7 @@ module.exports = {
             break;
         }
       })
-      //give new resume to the current user
+    //give new resume to the current user
     req.user.resumes.push(newResume);
     //save unpdated current user and the resume itself into the db
     newResume.save(function(err) {
@@ -68,5 +70,4 @@ module.exports = {
         throw err;
     });
   }
-
 }

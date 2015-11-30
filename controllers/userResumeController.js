@@ -8,9 +8,6 @@ var helper = require('../helpers/resume_form.js')
 
 
 
-//app.post resume/:resumeparams
-//make a new Resume with params from form, try to save
-
 module.exports.controller = function(app) {
 
   function isLoggedIn(req, res, next) {
@@ -21,66 +18,51 @@ module.exports.controller = function(app) {
     res.redirect('/');
   }
 
-
+//create a new resume
   app.get('/newresume', isLoggedIn, function(req, res) {
-    var foundthing = {
+    //pass in a blank object (to distinguish from the edit route)
+    var resumeObj = {
       education: [],
       experiences: []
     };
-    res.render('new_resume', {
-      req: req,
-      foundthing: foundthing
-    })
+    //req gets pass in to all render-view route to give each page access to session data
+    res.render('new_resume', {req: req, resumeObj: resumeObj })
   })
 
   app.post('/newresume', function(req, res) {
-    //sub == 'submission'
+    //sub is 'submission'
     var sub = req.body
-      //start new function
+      //make a new resume (helper)
       helper.newResume(sub, req);
-     //end new function
-    res.render('profile', {
-      req: req,
-      user: req.user
+    res.render('profile', {req: req, user: req.user
     })
   })
-
-
 
     app.post('/updateresume', function(req, res) {
       console.log('updating a resume');
       var sub = req.body
-        //delete the old resume (from user and database)
       var resumeID = sub.ID;
-      //delete function:
+      //delete old resume
       helper.deleteResume(resumeID, req)
-       //end delete function
-
-      var sub = req.body
-        //start new function
-            helper.newResume(sub, req);
-      //end new function
-
+      //'recreate' a new one with edits
+      helper.newResume(sub, req);
       res.redirect('/profile')
-
     })
-
-
-
 
   app.get('/resume/delete/:id', function(req, res) {
     var resumeID = req.params.id
-      //delete function:
-        helper.deleteResume(resumeID, req)
-   //end delete function
+    // delete clicked resume:
+    helper.deleteResume(resumeID, req)
     res.redirect('/profile')
   })
 
+  //make clicked resume in profile the 'currrent' resume
   app.get('/resume/makecurrent/:id', function(req, res) {
     var resumeID = req.params.id
     var userID = req.user._id;
     User.findById(userID, function(err, user) {
       if (err) throw err;
+      //move clicked resume to the end of the array
       user.resumes.forEach(function(resume, index) {
         if (resume._id == resumeID) {
           user.resumes.splice(index, 1);
@@ -88,6 +70,7 @@ module.exports.controller = function(app) {
           return
         }
       })
+      //update user
       user.save(function(err) {
         if (err) throw err;
       })
@@ -95,26 +78,19 @@ module.exports.controller = function(app) {
     res.redirect('/profile')
   })
 
-
-//edit route
+//edit route - needs to be at bottom fear for now, (strange bug with bootstrap). edits resume clicked in the profile
   app.get('/:id', function(req, res) {
-    //  var UserResume.findById(req.params.id);
     var resumeID = req.params.id;
-    console.log('ROUTE:the edit resumes id:', resumeID);
-    UserResume.findById(resumeID, function(err, foundthing) {
+    UserResume.findById(resumeID, function(err, resumeObj) {
       if (err) {
-        console.log('this is the error:',err);
+        throw err;
       } else {
-        console.log('sucess:', foundthing.summary);
-        console.log('the found thing:');
-
         res.render('new_resume', {
           req: req,
-          foundthing: foundthing
+          resumeObj: resumeObj
         })
       }
-
     })
-      });
+  });
 
 }
