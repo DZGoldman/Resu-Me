@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 // helper method to add together the entire text of the resume.
 var resumeContent = function(resume) {
-   return resume.summary + resume.experiences.join(' ');
+   return resume.summary + ' ' + resume.experiences.join(' ');
 };
 
 // helper method to create object from mult terms.
@@ -29,10 +29,11 @@ module.exports = {
       classifier = new natural.BayesClassifier();
       resumes.forEach((resume, index, array) => {
          var content = resumeContent(resume);
+         console.log("resume class" + index + " is " + resume.title);
          classifier.addDocument(content, resume.title);
       });
       classifier.train()
-      return classifier.classify(textToMatch);
+      return classifier.getClassifications(textToMatch);
    },
 
    mostImportantWords: function(resumes, numWords, scale) {

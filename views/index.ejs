@@ -40,9 +40,9 @@
           <h1>Search Our Database</h1>
           <div id="custom-search-input">
             <div class="input-group col-md-12">
-              <input type="text" class="  search-query form-control input-lg" placeholder="Search" />
+              <input type="text" id="search-query" class="search-query form-control input-lg" placeholder="Search" />
               <span class="input-group-btn">
-                <button class="btn btn-danger btn-lg" type="button">
+                <button class="btn btn-danger btn-lg" id="search-query" type="button">
                   <span class=" glyphicon glyphicon-search"></span>
                 </button>
               </span>
@@ -68,6 +68,10 @@
 
         </div>
       </div>
+
+<!-- WordCloud Partial -->
+    <% include ../partials/wordcloud %>
+
     </div>
 
 

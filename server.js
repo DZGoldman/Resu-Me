@@ -94,6 +94,13 @@ app.get('/displayCloud', (req, res) => {
 });
 
 
+// get the user from the session
+app.get('/compareResume', (req, res) => {
+   res.send(req.user);
+});
+
+
+
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
