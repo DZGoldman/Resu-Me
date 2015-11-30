@@ -1,0 +1,59 @@
+<!doctype html>
+<meta charset="UTF-8">
+<title>Resu-Me</title>
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
+
+<!-- NOTE: leave in bower libraries
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+-->
+
+<link rel="stylesheet"
+href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/spacelab/bootstrap.min.css'>
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+       <div class="container-fluid">
+         <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+           <a class="navbar-brand" href="/">Resu-Me</a>
+         </div>
+         <div>
+           <div class="collapse navbar-collapse" id="myNavbar">
+           <ul class="nav navbar-nav">
+             <li class="active"></li>
+             <li><a href="/newresume">Write New Resume</a></li>
+             <li><a href="https://github.com/DZGoldman/Resu-Me/" target="_blank">About</a></li>
+           </ul>
+           <ul class="nav navbar-nav navbar-right">
+
+             <%if(!req.user){  %>
+             <li>
+               <a href="/signup">
+                 <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+             </li>
+             <li>
+               <a href="/login">
+                 <span class="glyphicon glyphicon-log-in"></span> Login</a>
+             </li>
+              <%}else{  %>
+                <li>
+                  <a href="/profile">
+                    <span class="glyphicon glyphicon-user"></span> <%= req.user.username %></a>
+                </li>
+                <li>
+                  <a href="/logout">
+                    <span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                </li>
+                <%}  %>
+
+           </ul>
+         </div>
+       </div>
+     </nav>

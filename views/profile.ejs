@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+   <% include ../partials/head %>
+
+      <style>
+         body {
+            padding-top: 80px;
+            word-wrap: break-word;
+         }
+      </style>
+</head>
+
+<body>
+   <div class="container">
+      <!-- HEADER -->
+      <div class="page-header text-center">
+         <h1>
+            <%= user.username%>'s Profile Page</h1>
+      </div>
+      <!-- DATA  -->
+      <div class="row">
+
+         <!-- LOCAL INFORMATION -->
+         <div class="col-md-12">
+            <div class="well">
+               <h2>
+                  <center>
+                     <span class="glyphicon glyphicon-edit"></span> User Info and Resumes
+                  </center>
+               </h2>
+
+               <p>
+                  <strong>Email</strong>:
+                  <%= user.local.email %>
+                     <br>
+                     <strong>Current Resume: </strong>
+                     <% if(user.resumes.length>0){%>
+                        <%=user.resumes[user.resumes.length-1].summary %>
+                           <hr>
+                           <% } %>
+                              <br>
+                              <strong>Resumes</strong>:
+                              <br>
+                              <ul>
+                                 <% user.resumes.forEach(function(resume){ %>
+                                    <li>
+                                       <%= resume.summary %>
+                                          <!-- routes are a placeholder for now -->
+                                    </li><a href='/<%=resume._id %>'>Edit</a>
+                                    <li>
+                                       <a href='/resume/delete/<%=resume._id %>'>Delete</a>
+                                    </li>
+                                    <li>
+                                       <a href="/resume/makecurrent/<%= resume._id%>">Make Current Resume</a>
+                                    </li>
+                                    <%}) %>
+                              </ul>
+               </p>
+
+            </div>
+
+            <a href="/newresume" class="btn btn-primary">Write New Resume</a>
+
+            <a href="/logout" class="btn btn-danger">Logout</a>
+         </div>
+
+         <!-- Visualizations -->
+         <% include ../partials/user-resume %>
+
+      </div>
+
+      <% include ../partials/footer %>
+      <br><br>
+
+</body>
+
+</html>
