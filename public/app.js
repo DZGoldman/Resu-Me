@@ -1,6 +1,4 @@
 $(function() {
-<<<<<<< HEAD
-
    /*********  Visualization  *************/
    // testing function to display the word cloud
    $('button#search-query').click(getCloudData);
@@ -8,25 +6,6 @@ $('#analyze-resume').click(function(){
 $('#analyze-resume').css("background-color", "red");
    getClassify() ;
 });
-=======
-   // create a new  resume.
-
-
-// testing function to display the word cloud
-//   $('body').click(getCloudData);
-//sign up
-// login
-
-  var clickCount =1;
-  $('#Experience_Button').click(addExperienceField);
-
-  $('#Education_Button').click(addEducationField);
-
-
-//new resume form button helpers:
-
-//search box
->>>>>>> dev
 
    //sign up
    // login
@@ -36,23 +15,11 @@ $('#analyze-resume').css("background-color", "red");
    $('#Experience_Button').click(addExperienceField);
    $('#Education_Button').click(addEducationField);
 
-   // on click, render resume view, which will have a form.
-   // button for form, on click, send ajax request to new resume controller
+
    $('#create-new-resume').on('click', function() {
       console.log('making new resume');
       $.get('/resumeform') // render ejs
    })
-
-
-<<<<<<< HEAD
-   //submit a new resume
-
-   // upload a resume
-=======
-// write new resume
-// on click, render resume view, which will have a form.
-// button for form, on click, send ajax request to new resume controller
->>>>>>> dev
 
 })
    var fullText = function (resume){
@@ -66,23 +33,6 @@ $('#analyze-resume').css("background-color", "red");
 
 
 var testQuery = 'computer programmer/';
-/*******  Resume Form *********/
-
-//new resume form button helpers:
-var addExperienceField = function() {
-   var $copy = $($('#experience-template').html()).clone();
-   $('#experience-container').append($copy)
-}
-
-var addEducationField = function() {
-   var $copy = $($('#education-template').html()).clone();
-   console.log($copy);
-   $('#education-container').append($copy)
-}
-
-<<<<<<< HEAD
-=======
-
 
    // create a wordcloud when the button is hit
    $('button#cloudQuery').click(function() {
@@ -90,6 +40,8 @@ var addEducationField = function() {
    });
 });
 
+
+/*******  Resume Form *********/
 var addExperienceField= function () {
   var $copy = $($('#experience-template').html()).clone();
 $('#experience-container').append($copy)
@@ -100,7 +52,7 @@ var addEducationField =function () {
   console.log($copy);
 $('#education-container').append($copy)
 }
->>>>>>> dev
+
 
 
 /*******  Viaualization *********/
@@ -172,6 +124,8 @@ var classifyAndCompare = function(user){
    $('#analyze-resume').css("background-color", "yellow");
 var currentResume = user.resumes[user.resumes.length-1];
 var full = fullText(currentResume);
+
+// FIXME change this and the route in server.js to ensure
 $.get('/analyzeResume/'+testQuery + full).done(showClassification);
 }
 
