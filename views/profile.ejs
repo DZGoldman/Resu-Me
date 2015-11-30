@@ -37,18 +37,20 @@
                      <br>
                      <strong>Current Resume:  </strong> <br>
                      <% if(user.resumes.length>0){%>
+                         "<%=user.resumes[user.resumes.length-1].name %>"<br>
                         "<%=user.resumes[user.resumes.length-1].summary %>"
 
                            <% } %>
                               <br>
                               <br>
                               <strong>Resumes</strong>:
-                              
+
                               <br>
                               <ul>
 
                                  <% user.resumes.forEach(function(resume){ %>
                                    <div>
+                                      "<%= resume.name %>"<br>
                                       "<%= resume.summary %>"
                                          <!-- routes are a placeholder for now -->
                                    </div>
