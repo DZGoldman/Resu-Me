@@ -64,9 +64,9 @@
         <!-- Education input-->
         <div class="form-group" id='education-template'>
           <label class="col-md-4 control-label" for="textinput">Education</label>
-          <div class="col-md-4">
+          <div class="col-md-4 " id = 'education-list-container'>
             <%if (foundthing.education.length ==0){ %>
-            <input id="Education" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
+            <input id="Education0" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
             <%}else{ %>
           <%foundthing.education.forEach(function(edu){ %>
             <input value= '<%= edu %>' id="Education" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
