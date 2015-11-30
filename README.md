@@ -89,6 +89,9 @@ You may not have understood everything we were talking about, but thank you for 
 ###Stack Overflow:
 Thanks for both the abuse and the answers.
 
+###[SuperResume.com](http://www.super-resume.com/):
+Without your data, we'd be nothing.
+
 ##Copyright and License
 Copyright 2015 dog_pakk Inc.
 
