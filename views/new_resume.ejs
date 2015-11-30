@@ -80,10 +80,10 @@
           <label class="col-md-4 control-label" for="textinput">Education</label>
           <div class="education-input" id = 'education-list-container'>
             <%if (foundthing.education.length ==0){ %>
-            <input id="Education0" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
+            <input id="Education0" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md"><br>
             <%}else{ %>
           <%foundthing.education.forEach(function(edu){ %>
-            <input value= '<%= edu %>' id="Education" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
+            <input value= '<%= edu %>' id="Education" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md"><br>
           <%}) %>
           <%} %>
           </div>
@@ -109,13 +109,13 @@
             <input id="textinput-title-0" name="textinput" type="text" placeholder="Title" class="form-control input-md">
             <input id="textinput-state-date-0" name="textinput" type="text" placeholder="Start Date" class="form-control input-md">
             <input id="textinput-end-date-0" name="textinput" type="text" placeholder="End Date" class="form-control input-md">
-            <input id="textinput-description-0" name="textinput" type="text" placeholder="Description" class="form-control input-md">
+            <input id="textinput-description-0" name="textinput" type="text" placeholder="Description" class="form-control input-md"><br>
             <% }else{ %>
             <% foundthing.experiences.forEach(function(exp){ %>
             <input value='<%= exp.title %>'id="textinput-title-0" name="textinput" type="text" placeholder="Title" class="form-control input-md">
             <input value='<%= exp.startDate %>' id="textinput-state-date-0" name="textinput" type="text" placeholder="Start Date" class="form-control input-md">
             <input value='<%= exp.endDate %>'id="textinput-end-date-0" name="textinput" type="text" placeholder="End Date" class="form-control input-md">
-            <input value='<%= exp.description %>' id="textinput-description-0" name="textinput" type="text" placeholder="Description" class="form-control input-md">
+            <input value='<%= exp.description %>' id="textinput-description-0" name="textinput" type="text" placeholder="Description" class="form-control input-md"><br>
             <%}) %>
             <% } %>
           </div>
