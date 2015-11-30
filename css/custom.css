@@ -1,0 +1,15 @@
+body {
+  padding-top: 100px;
+  margin: 20px;
+
+}
+.education-input{
+  width: 360px;
+  margin: 0 auto;
+  padding: 5px;
+}
+.experience-input{
+  width: 360px;
+  margin: 0 auto;
+  padding: 5px;
+}

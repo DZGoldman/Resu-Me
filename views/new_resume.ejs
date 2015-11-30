@@ -6,10 +6,23 @@
 </head>
 
 <style>
-  body {
-    padding-top: 50px;
-  }
+body {
+  padding-top: 100px;
+  margin: 20px;
+
+}
+.education-input{
+  width: 360px;
+  margin: 0 auto;
+  padding: 5px;
+}
+.experience-input{
+  width: 360px;
+  margin: 0 auto;
+  padding: 5px;
+}
 </style>
+
 
 <body>
   <form class="form-horizontal" action="/newresume" method="post">
@@ -18,6 +31,7 @@
       <!-- Form Name -->
       <legend>Add New Resume Form</legend>
 
+<div class="form-container">
       <!-- Name input-->
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Name/ResumeTitle</label>
@@ -59,7 +73,7 @@
         <!-- Education input-->
         <div class="form-group" id='education-template'>
           <label class="col-md-4 control-label" for="textinput">Education</label>
-          <div class="col-md-4">
+          <div class="education-input">
             <input id="Education" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
           </div>
         </div>
@@ -79,7 +93,7 @@
 
         <div class="form-group " id='experience-template'>
           <label class="col-md-4 control-label" for="textinput">Experience</label>
-          <div class="col-md-4">
+          <div class="experience-input">
             <input id="textinput-title-0" name="textinput" type="text" placeholder="Title" class="form-control input-md">
             <input id="textinput-state-date-0" name="textinput" type="text" placeholder="Start Date" class="form-control input-md">
             <input id="textinput-end-date-0" name="textinput" type="text" placeholder="End Date" class="form-control input-md">
@@ -87,7 +101,7 @@
           </div>
         </div>
         </div>
-        
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="singlebutton"></label>
           <div class="col-md-4">
@@ -113,6 +127,7 @@
           </button>
         </div>
       </div>
+</div>
 
     </fieldset>
   </form>
