@@ -32,9 +32,9 @@
 
                         <ul>
                           <% user.resumes.forEach(function(resume){ %>
-                            <li><%= resume._id %>
+                            <li><%= resume.summary %>
                               <!-- routes are a placeholder for now -->
-                              <%console.log('PROFILE: resume id in profile', resume._id) %>
+                              <%console.log('PROFILE: resume id in profile', resume.summary) %>
                             </li><a href='/<%=resume._id %>'>Edit</a>
                             <a href='/resume/delete/<%=resume._id %>'>Delete</a>
                             <a href="/resume/makecurrent/<%= resume._id%>">Make Current Resume</a>

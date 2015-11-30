@@ -88,7 +88,6 @@ module.exports.controller = function(app) {
       var sub = req.body
         //delete the old resume (from user and database)
       var resumeID = sub.ID;
-      console.log(sub.ID);
       //delete function:
       UserResume.remove({
           _id: resumeID
@@ -210,6 +209,7 @@ module.exports.controller = function(app) {
   })
 
 
+//edit route
   app.get('/:id', function(req, res) {
     //  var UserResume.findById(req.params.id);
     var resumeID = req.params.id;
