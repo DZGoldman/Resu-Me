@@ -11,16 +11,17 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> <%= user.username%>'s Profile Page </h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <h1><%= user.username%>'s Profile Page</h1>
     </div>
+
+
 
     <div class="row">
 
         <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
+        <div class="col-md-12">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Info</h3>
+                <h2><center><span class="glyphicon glyphicon-edit"></span> User Info and Resumes</center></h2>
 
                     <p>
                         <strong>Email</strong>: <%= user.local.email %><br>
@@ -34,8 +35,7 @@
                           <% user.resumes.forEach(function(resume){ %>
                             <li><%= resume.summary %>
                               <!-- routes are a placeholder for now -->
-                              <%console.log('PROFILE: resume id in profile', resume.summary) %>
-                            </li><a href='/<%=resume._id %>'>Edit</a>
+                            </li><a href='/resume/edit/<%=resume._id %>'>Edit</a>
                             <a href='/resume/delete/<%=resume._id %>'>Delete</a>
                             <a href="/resume/makecurrent/<%= resume._id%>">Make Current Resume</a>
 
@@ -49,7 +49,9 @@
                     </p>
 
             </div>
+            <a href="/logout" class="btn btn-danger">Logout</a>
         </div>
+
 
     </div>
 
