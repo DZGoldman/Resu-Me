@@ -36,10 +36,10 @@
       <div class="row">
         <div class="col-sm-6 text-center">
           <!--Column left-->
-          <h1>Search Our Database</h1>
+          <h1>Search Our Database By Job Title</h1>
           <div id="custom-search-input">
             <div class="input-group col-md-12">
-              <input type="text" id="search-query" class="search-query form-control input-lg" placeholder="Search" />
+              <input type="text" id="search-query" class="search-query form-control input-lg" placeholder="Enter Word(s) in Job Title" />
               <span class="input-group-btn">
                 <button class="btn btn-danger btn-lg" id="search-query" type="button">
                   <span class=" glyphicon glyphicon-search"></span>
@@ -61,12 +61,12 @@
             </span>
           </div>
           <%}else{ %>
-          <h1>Login/Sign Up to Write Your Own Resume!</h1>
+          <h3>Login to Write Your Own Resume. On Your Profile Page, See How It Compares To Others</h3>
           <%} %>
 
 
         </div>
-      </div>
+      </div><br><br><br>
 
 <!-- WordCloud Partial -->
     <% include ../partials/wordcloud %>
