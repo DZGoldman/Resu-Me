@@ -12,7 +12,12 @@
 </style>
 
 <body>
+  <!-- new resume if starting object is empty, update it's already got info -->
+  <% if(foundthing.experiences.length==0){ %>
   <form class="form-horizontal" action="/newresume" method="post">
+    <% }else{ %>
+<form class="form-horizontal" action="/updateresume" method="post">
+      <% } %>
     <fieldset>
 
       <!-- Form Name -->
@@ -22,7 +27,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Name/ResumeTitle</label>
         <div class="col-md-4">
-          <input id="Name" name="Name" type="text" placeholder="Name" class="form-control input-md">
+          <input value ='<%= foundthing.name %>' id="Name" name="Name" type="text" placeholder="Name" class="form-control input-md">
 
         </div>
       </div>
@@ -31,7 +36,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Address</label>
         <div class="col-md-4">
-          <input id="Address" name="Address" type="text" placeholder="Street Address" class="form-control input-md">
+          <input value= '<%= foundthing.streetAddress %>' id="Address" name="Address" type="text" placeholder="Street Address" class="form-control input-md">
 
         </div>
       </div>
@@ -40,7 +45,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Email</label>
         <div class="col-md-4">
-          <input id="Email" name="Email" type="text" placeholder="Email Address" class="form-control input-md">
+          <input value ='<%= foundthing.email %>'id="Email" name="Email" type="text"  placeholder="Email Address" class="form-control input-md">
 
         </div>
       </div>
@@ -49,7 +54,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Phone</label>
         <div class="col-md-4">
-          <input id="Phone" name="Phone" type="text" placeholder="(000) 000-0000" class="form-control input-md">
+          <input value ='<%= foundthing.phone %>' id="Phone" name="Phone" type="text" placeholder="(000) 000-0000" class="form-control input-md">
 
         </div>
       </div>
@@ -59,8 +64,14 @@
         <!-- Education input-->
         <div class="form-group" id='education-template'>
           <label class="col-md-4 control-label" for="textinput">Education</label>
-          <div class="col-md-4">
-            <input id="Education" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
+          <div class="col-md-4 " id = 'education-list-container'>
+            <%if (foundthing.education.length ==0){ %>
+            <input id="Education0" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
+            <%}else{ %>
+          <%foundthing.education.forEach(function(edu){ %>
+            <input value= '<%= edu %>' id="Education" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
+          <%}) %>
+          <%} %>
           </div>
         </div>
 
@@ -80,10 +91,19 @@
         <div class="form-group " id='experience-template'>
           <label class="col-md-4 control-label" for="textinput">Experience</label>
           <div class="col-md-4">
+            <%if(foundthing.experiences.length == 0){ %>
             <input id="textinput-title-0" name="textinput" type="text" placeholder="Title" class="form-control input-md">
             <input id="textinput-state-date-0" name="textinput" type="text" placeholder="Start Date" class="form-control input-md">
             <input id="textinput-end-date-0" name="textinput" type="text" placeholder="End Date" class="form-control input-md">
             <input id="textinput-description-0" name="textinput" type="text" placeholder="Description" class="form-control input-md">
+            <% }else{ %>
+            <% foundthing.experiences.forEach(function(exp){ %>
+            <input value='<%= exp.title %>'id="textinput-title-0" name="textinput" type="text" placeholder="Title" class="form-control input-md">
+            <input value='<%= exp.startDate %>' id="textinput-state-date-0" name="textinput" type="text" placeholder="Start Date" class="form-control input-md">
+            <input value='<%= exp.endDate %>'id="textinput-end-date-0" name="textinput" type="text" placeholder="End Date" class="form-control input-md">
+            <input value='<%= exp.description %>' id="textinput-description-0" name="textinput" type="text" placeholder="Description" class="form-control input-md">
+            <%}) %>
+            <% } %>
           </div>
         </div>
         <div class="form-group">
@@ -98,7 +118,16 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Summary:</label>
         <div class="col-md-4">
-          <input id="Summary" name="Summary" type="text" placeholder="Summary" class="form-control input-md">
+          <input value ='<%= foundthing.summary %>' id="Summary" name="Summary" type="text" placeholder="Summary" class="form-control input-md">
+
+        </div>
+      </div>
+
+    <!-- hidden div to carry ID to edit form -->
+      <div class="form-group">
+        <label class="col-md-4 control-label hidden" for="textinput">Summary:</label>
+        <div class="col-md-4 hidden" >
+          <input value ='<%= foundthing._id %>' id="ID" name="ID" type="text" placeholder="ID" class="hidden form-control input-md">
 
         </div>
       </div>
@@ -107,7 +136,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="singlebutton"></label>
         <div class="col-md-4">
-          <button id="Submit_Button" name="Submit_Button" <a href="#" class="btn btn-danger">Add New Resume</a>
+          <button  id="Submit_Button" name="Submit_Button" <a href="#" class="btn btn-danger">Add New Resume</a>
           </button>
         </div>
       </div>
