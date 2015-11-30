@@ -12,6 +12,7 @@
 </style>
 
 <body>
+  <!-- new resume if starting object is empty, update it's already got info -->
   <% if(foundthing.experiences.length==0){ %>
   <form class="form-horizontal" action="/newresume" method="post">
     <% }else{ %>

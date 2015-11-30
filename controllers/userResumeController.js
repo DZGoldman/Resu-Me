@@ -81,25 +81,7 @@ module.exports.controller = function(app) {
     })
   })
 
-  app.get('/resume/edit/:id', function(req, res) {
-    //  var UserResume.findById(req.params.id);
-    var resumeID = req.params.id;
-    console.log(resumeID);
-    UserResume.findById(resumeID, function(err, foundthing) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('sucess:', foundthing.summary);
-        console.log(foundthing);
 
-        res.render('new_resume', {
-          req: req,
-          foundthing: foundthing
-        })
-      }
-
-    })
-      });
 
     app.post('/updateresume', function(req, res) {
       console.log('updating a resume');
@@ -226,5 +208,26 @@ module.exports.controller = function(app) {
     })
     res.redirect('/profile')
   })
+
+
+  app.get('/:id', function(req, res) {
+    //  var UserResume.findById(req.params.id);
+    var resumeID = req.params.id;
+    console.log('ROUTE:the edit resumes id:', resumeID);
+    UserResume.findById(resumeID, function(err, foundthing) {
+      if (err) {
+        console.log('this is the error:',err);
+      } else {
+        console.log('sucess:', foundthing.summary);
+        console.log('the found thing:');
+
+        res.render('new_resume', {
+          req: req,
+          foundthing: foundthing
+        })
+      }
+
+    })
+      });
 
 }
