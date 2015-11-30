@@ -8,10 +8,21 @@
 <style>
   body {
     padding-top: 50px;
-    width: 360px;
-   margin: 0 auto;
-   padding: 5px;
+    margin: 0 auto;
+    padding: 5px;
   }
+
+  .education-input{
+  width: 400px;
+  margin: 0 auto;
+  padding: 5px;
+}
+.experience-input{
+  width: 400px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
 </style>
 
 <body>
@@ -67,7 +78,7 @@
         <!-- Education input-->
         <div class="form-group" id='education-template'>
           <label class="col-md-4 control-label" for="textinput">Education</label>
-          <div class="col-md-4 " id = 'education-list-container'>
+          <div class="education-input" id = 'education-list-container'>
             <%if (foundthing.education.length ==0){ %>
             <input id="Education0" name="Education" type="text" placeholder="School / Year of Graduation" class="form-control input-md">
             <%}else{ %>
@@ -93,7 +104,7 @@
 
         <div class="form-group " id='experience-template'>
           <label class="col-md-4 control-label" for="textinput">Experience</label>
-          <div class="col-md-4">
+          <div class="experience-input">
             <%if(foundthing.experiences.length == 0){ %>
             <input id="textinput-title-0" name="textinput" type="text" placeholder="Title" class="form-control input-md">
             <input id="textinput-state-date-0" name="textinput" type="text" placeholder="Start Date" class="form-control input-md">
