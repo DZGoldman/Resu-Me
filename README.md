@@ -1,5 +1,5 @@
 # Resu-Me App
-
+##Let the data guide your job search
 Resu-Me allows users to see how their resumes compare to those within their chosen industry. Using data analysis and visualization, users search for their job of choice, Resu-Me scans its database and the user receives results in a functional and aesthetically pleasing way. Resu-Me allows users to create an account -- add, edit and delete resumes.
 
 ## Authors:
