@@ -1,57 +1,79 @@
 <!doctype html>
 <html>
+
 <head>
-    <% include ../partials/head %>
+   <% include ../partials/head %>
 
-    <style>
-        body        { padding-top:80px; word-wrap:break-word; }
-    </style>
+      <style>
+         body {
+            padding-top: 80px;
+            word-wrap: break-word;
+         }
+      </style>
 </head>
+
 <body>
-<div class="container">
+   <div class="container">
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> <%= user.username%>'s Profile Page </h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
+      <div class="page-header text-center">
+         <h1>
+            <span class="fa fa-anchor"></span>
+            <%= user.username%>'s Profile Page </h1>
+         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+      </div>
 
-    <div class="row">
+      <div class="row">
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
+         <!-- LOCAL INFORMATION -->
+         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Info</h3>
-
-                    <p>
-                        <strong>Email</strong>: <%= user.local.email %><br>
-                        <strong>Current Resume: </strong><% if(user.resumes.length>0){%>
+               <h3>
+                  <span class="fa fa-user"></span> Info</h3>
+<button id="analyze-resume">Compare</button>
+               <p>
+                  <strong>Email</strong>:
+                  <%= user.local.email %>
+                     <br>
+                     <strong>Current Resume: </strong>
+                     <% if(user.resumes.length>0){%>
                         <%=user.resumes[user.resumes.length-1].summary %>
-                        <% } %>
-                        <br>
-                        <strong>Resumes</strong>:<br>
+                           <hr>
+                           <% } %>
+                              <br>
+                              <strong>Resumes</strong>:
+                              <br>
 
-                        <ul>
-                          <% user.resumes.forEach(function(resume){ %>
-                            <li><%= resume.summary %>
-                              <!-- routes are a placeholder for now -->
-                            </li><a href='/resume/edit/<%=resume._id %>'>Edit</a>
-                            <a href='/resume/delete/<%=resume._id %>'>Delete</a>
-                            <a href="/resume/makecurrent/<%= resume._id%>">Make Current Resume</a>
+                              <ul>
+                                 <% user.resumes.forEach(function(resume){ %>
+                                    <li>
+                                       <%= resume.summary %>
+                                          <li>
+                                             <%=user.resumes[user.resumes.length-1].formatted %>
+                                          </li>
+                                          <!-- routes are a placeholder for now -->
+                                    </li><a href='/resume/edit/<%=resume._id %>'>Edit</a>
+                                    <a href='/resume/delete/<%=resume._id %>'>Delete</a>
+                                    <a href="/resume/makecurrent/<%= resume._id%>">Make Current Resume</a>
 
-                            <%}) %>
+                                    <%}) %>
 
-                        </ul>
-
-
+                              </ul>
 
 
-                    </p>
+
+
+               </p>
 
             </div>
-        </div>
+         </div>
 
-    </div>
+      </div>
 
-</div>
+   </div>
+
+   <% include ../partials/footer %>
+
+
 </body>
+
 </html>

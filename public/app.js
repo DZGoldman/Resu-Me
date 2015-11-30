@@ -3,6 +3,11 @@ $(function() {
    /*********  Visualization  *************/
    // testing function to display the word cloud
    $('button#search-query').click(getCloudData);
+$('#analyze-resume').click(function(){
+$('#analyze-resume').css("background-color", "red");
+   getClassify() ;
+});
+
    //sign up
    // login
 
@@ -22,10 +27,19 @@ $(function() {
    //submit a new resume
 
    // upload a resume
+
 })
+   var fullText = function (resume){
+      var result = [];
+      result.push(resume.summary);
+      resume.experiences.forEach( function(value, index){
+         result.push(value.description);
+      });
+      return result.join(' ');
+   };
 
 
-
+var testQuery = 'computer programmer/';
 /*******  Resume Form *********/
 
 //new resume form button helpers:
@@ -96,4 +110,33 @@ var showCloud = function(data) {
             return d.text;
          });
    }
+}
+
+
+// comparing user resumes
+var getClassify = function(){
+   $('#analyze-resume').css("background-color", "blue");
+   $.get('/compareResume').done(classifyAndCompare);
+   // take the current resume of the current user
+   // send ajax request to the classifiction route
+}
+
+var classifyAndCompare = function(user){
+   $('#analyze-resume').css("background-color", "yellow");
+var currentResume = user.resumes[user.resumes.length-1];
+var full = fullText(currentResume);
+$.get('/analyzeResume/'+testQuery + full).done(showClassification);
+}
+
+// this will just be a d3 function that will take all of the data and display it
+var showClassification = function(classification){
+   $('#analyze-resume').css("background-color", "green");
+//classifications is an array of hashes with the label and the value
+// it is returned sorted by likeess
+
+console.log(classification);
+classification.forEach(function(val, index){
+   var add = $('<p>').text(val.label + ": " + val.value);
+   $('.container').append( add );
+})
 }

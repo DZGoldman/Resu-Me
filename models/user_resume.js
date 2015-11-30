@@ -1,10 +1,8 @@
 var mongoose = require('mongoose');
 
 var UserResumeSchema = new mongoose.Schema({
-  education: Array,
-
-  experiences: Array,
-  summary: String,
+   education: Array,
+   summary: String,
    name: String,
    streetAddress: String,
    email: String,
@@ -15,8 +13,9 @@ var UserResumeSchema = new mongoose.Schema({
       endDate: String,
       description: String
    }],
-   summary: String,
-})
+   summary: String
+});
+
 
 var UserResume = mongoose.model('UserResume', UserResumeSchema)
 

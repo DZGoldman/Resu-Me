@@ -98,6 +98,10 @@ app.get('/displayCloud', (req, res) => {
    res.render('visualization.ejs', {req: req});
 });
 
+// get the user from the session
+app.get('/compareResume', (req, res) => {
+   res.send(req.user);
+});
 //Controllers
 // fs.readdirSync('./controllers').forEach(function(file) {
 //    if (file.substr(-3) == '.js') {
