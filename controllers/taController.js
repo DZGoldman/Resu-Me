@@ -11,8 +11,8 @@ var CLOUD_SCALING = 100;
 
 module.exports.controller = function(app) {
 // test route to return random resume
-   app.get('/randomResume', (req, res) => {
-      ResumeData.findOne((err, resume) => {
+   app.get('/randomResume', (req, res)=>{
+      ResumeData.findOne(function(err, resume){
          res.send(resume);
       });
    });
@@ -32,7 +32,7 @@ module.exports.controller = function(app) {
          });
    });
 // return the top 10 words matching a query
-   app.get('/tfidf/:query', (req, res) => {
+   app.get('/tfidf/:query', function(req, res){
       ResumeData.find({
          //match query params instead of exact string
          title: {
@@ -46,7 +46,7 @@ module.exports.controller = function(app) {
          });
    });
 // return relative importance of compare to doc wher title = query
-   app.get('/tfidf/:query/:compare', (req, res) => {
+   app.get('/tfidf/:query/:compare', function(req, res){
       ResumeData.find({
          //match query params instead of exact string
          title: {
@@ -60,7 +60,7 @@ module.exports.controller = function(app) {
          });
    });
 // return top 10 words matching query AND scale numbers for D3
-   app.get('/cloud/:query', (req, res) => {
+   app.get('/cloud/:query', function(req, res){
       ResumeData.find({
          //match query params instead of exact string
          title: {
