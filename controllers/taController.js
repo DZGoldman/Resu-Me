@@ -11,7 +11,7 @@ var CLOUD_SCALING = 100;
 
 module.exports.controller = function(app) {
 // test route to return random resume
-   app.get('/randomResume', function(req, res)
+   app.get('/randomResume', function(req, res){
       ResumeData.findOne(function(err, resume){
          res.send(resume);
       });
