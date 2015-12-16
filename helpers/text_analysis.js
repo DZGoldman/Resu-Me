@@ -27,7 +27,7 @@ module.exports = {
 
    classify: function(resumes, textToMatch) {
       classifier = new natural.BayesClassifier();
-      resumes.forEach((resume, index, array) => {
+      resumes.forEach(function(resume, index, array) {
          var content = resumeContent(resume);
          console.log("resume class" + index + " is " + resume.title);
          classifier.addDocument(content, resume.title);
