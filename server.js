@@ -57,7 +57,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // connect to Mongodb
-mongoose.connect('mongodb://localhost/resu-me', (err) => {
+mongoose.connect('mongodb://localhost/resu-me', function(err) {
    if (err) {
       console.log(err);
    } else {
@@ -68,12 +68,12 @@ mongoose.connect('mongodb://localhost/resu-me', (err) => {
 //need this for passport
 require('./config/passport')(passport); // pass passport for configuration
 
-app.listen(3000, () => {
+app.listen(3000, function() {
    console.log("Resu-me listening on Port 3000")
 });
 
 
-app.get('/', (req, res) => {
+app.get('/',function (req, res)  {
    res.render('index', {
       req: req
    });
@@ -91,13 +91,13 @@ app.get('/test', function(req, res) {
 
 
 
-app.get('/displayCloud', (req, res) => {
+app.get('/displayCloud', function(req, res) {
    res.render('visualization.ejs', {req: req});
 });
 
 
 // get the user from the session
-app.get('/compareResume', (req, res) => {
+app.get('/compareResume', function(req, res) {
    res.send(req.user);
 });
 
