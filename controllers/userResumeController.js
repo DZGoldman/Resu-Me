@@ -80,6 +80,7 @@ module.exports.controller = function(app) {
 
 //edit route - needs to be at bottom fear for now, (strange bug with bootstrap). edits resume clicked in the profile
   app.get('/:id', function(req, res) {
+    console.log(req.params.id);
     var resumeID = req.params.id;
     UserResume.findById(resumeID, function(err, resumeObj) {
       if (err) {
