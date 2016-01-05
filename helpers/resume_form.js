@@ -62,6 +62,7 @@ module.exports = {
     req.user.resumes.push(newResume);
     //save unpdated current user and the resume itself into the db
     newResume.save(function(err) {
+      console.log(newResume);
       if (err)
         throw err;
     });
