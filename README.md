@@ -14,6 +14,10 @@ Resu-Me allows users to see how their resumes compare to those within their chos
 ## Instructions
 If you would like to check things out:
 
+Visit us at: (http://159.203.117.166:3000/)
+
+Or you can:
+
 1. Clone the repo: [Resu-Me](https://github.com/DZGoldman/Resu-Me)
 
 2. Install the packages: `npm install`
