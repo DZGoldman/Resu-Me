@@ -56,6 +56,9 @@ var addEducationField = function() {
 /*******  Viaualization *********/
 
 var getCloudData = function() {
+  var spinner = new Spinner({
+  position: 'relative'
+}).spin( document.getElementById('cloudy'));
    var query = '/cloud/' + $("input#search-query").val();
    console.log(query);
    $.get(query).done(showCloud);
