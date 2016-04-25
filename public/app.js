@@ -58,13 +58,14 @@ var addEducationField = function() {
 var getCloudData = function() {
   var spinner = new Spinner({
   position: 'relative'
-}).spin( document.getElementById('cloudy'));
+}).spin( document.getElementById('spinner'));
    var query = '/cloud/' + $("input#search-query").val();
    console.log(query);
    $.get(query).done(showCloud);
 }
 
 var showCloud = function(data) {
+  $('#spinner').empty();
    console.log("got to the d3 display function ");
    $('.wordcloud').remove();
    //have to save as a variable in order to access.
@@ -110,11 +111,17 @@ var showCloud = function(data) {
             return d.text;
          });
    }
+   $("html, body").animate({ scrollTop: $('.well').height()}, 1000);
+
 }
 
 
 // comparing user resumes
 var getClassify = function() {
+  var spinner = new Spinner({
+  position: 'relative'
+}).spin( document.getElementById('spinner'));
+
    $('#analyze-resume').css("background-color", "blue");
    $.get('/compareResume').done(classifyAndCompare);
    // take the current resume of the current user
@@ -132,6 +139,8 @@ var classifyAndCompare = function(user) {
 
 // this will just be a d3 function that will take all of the data and display it
 var showClassification = function(classification) {
+  $('#spinner').empty()
+
    $(".graphic").remove();
    $('#analyze-resume').css("background-color", "green");
    //classifications is an array of hashes with the label and the value
@@ -196,6 +205,8 @@ var showClassification = function(classification) {
       .on("mouseout", function() {
          $('#job-description').text('___________________');
       });
+      $("html, body").animate({ scrollTop: $(document).height()}, 2000);
+
    // // create the
    // debugger;
 }
