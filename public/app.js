@@ -1,4 +1,8 @@
 $(function() {
+  var spinner = new Spinner({
+  position: 'relative'
+  }).spin( document.getElementById('spinner'));
+  $('#spinner').hide()
    /*********  Visualization  *************/
    // create a wordcloud when the button is hit
    $('button#cloudQuery').click(function() {
@@ -56,16 +60,14 @@ var addEducationField = function() {
 /*******  Viaualization *********/
 
 var getCloudData = function() {
-  var spinner = new Spinner({
-  position: 'relative'
-}).spin( document.getElementById('spinner'));
+  $('#spinner').show()
    var query = '/cloud/' + $("input#search-query").val();
    console.log(query);
    $.get(query).done(showCloud);
 }
 
 var showCloud = function(data) {
-  $('#spinner').empty();
+  $('#spinner').hide();
    console.log("got to the d3 display function ");
    $('.wordcloud').remove();
    //have to save as a variable in order to access.
@@ -118,9 +120,7 @@ var showCloud = function(data) {
 
 // comparing user resumes
 var getClassify = function() {
-  var spinner = new Spinner({
-  position: 'relative'
-}).spin( document.getElementById('spinner'));
+  $('#spinner').show()
 
    $('#analyze-resume').css("background-color", "blue");
    $.get('/compareResume').done(classifyAndCompare);
@@ -139,7 +139,7 @@ var classifyAndCompare = function(user) {
 
 // this will just be a d3 function that will take all of the data and display it
 var showClassification = function(classification) {
-  $('#spinner').empty()
+  $('#spinner').hide()
 
    $(".graphic").remove();
    $('#analyze-resume').css("background-color", "green");
