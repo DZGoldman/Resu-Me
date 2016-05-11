@@ -43,7 +43,7 @@
               <span class="input-group-btn">
                 <button class="btn btn-danger btn-lg" id="search-query" type="button">
                   <span class=" glyphicon glyphicon-search"></span>
-                </button>
+              </button>
               </span>
             </div>
           </div>
@@ -51,25 +51,33 @@
         <div class="col-sm-6 text-center">
           <!--Column right-->
           <% if(req.user) { %>
-          <h1>Write New Resume</h1>
-          <div id="write-new-resume">
-            <span class="input-group-btn">
+            <h1>Write New Resume</h1>
+            <div id="write-new-resume">
+              <span class="input-group-btn">
               <a href="/newresume" class="btn btn-danger btn-lg btn-block" type="button">
                 <span class=" glyphicon glyphicon-pencil"></span>
               </a>
               </button>
-            </span>
-          </div>
-          <%}else{ %>
-          <h3>Login to Write Your Own Resume. On Your Profile Page, See How It Compares To Others</h3>
-          <%} %>
+              </span>
+            </div>
+            <%}else{ %>
+              <h3>Login to Write Your Own Resume. On Your Profile Page, See How It Compares To Others</h3>
+              <%} %>
 
 
         </div>
-      </div><br><br><br>
+      </div>
+      <br>
+      <br>
+      <br>
 
-<!-- WordCloud Partial -->
-    <% include ../partials/wordcloud %>
+      <!-- WordCloud Partial -->
+      <div class='container'>
+        <div class='row'>
+          <div id='spinner'></div>
+        </div>
+      </div>
+      <% include ../partials/wordcloud %>
 
     </div>
 
